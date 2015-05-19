@@ -51,7 +51,7 @@ public class ClassRegister {
 		}
 
 	}
-//Hallo TEEEST
+
 	public void eintragzuOrdnen() {
 		File myRegister = new File(
 				"/Users/Patrice/Documents/workspace/ClassRegister/src/de/dhbw/vs/fpr/register/register.txt");
@@ -60,7 +60,7 @@ public class ClassRegister {
 			fileScanner = new Scanner(myRegister);
 			StringBuilder sb = new StringBuilder();
 
-			while (fileScanner.hasNextLine()) {
+			while (fileScanner.hasNextLine()) {//Hallo
 
 				sb.append(fileScanner.nextLine() + "\n");
 
