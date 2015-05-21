@@ -46,13 +46,8 @@ public class Student {
 	public String getID() {
 		return ID;
 	}
-	
-	public boolean checkEntrys(){ //Checkt ob min ein Eintag vorhanden ist, gibt true zurück wenn keine vorhanden
-		
-		return eintraege.isEmpty(); 
-	}
 
-	public void getEntrys() {
+	public void getEintrag() {
 		String s = null;
 		if (eintraege.isEmpty()) {
 			System.out.println("Keine Eintraege vorhanden!");
