@@ -50,7 +50,7 @@ public class Class {
 		return this.classID;
 	}
 	
-	public Student compareID(String ID){ //Prüft ob Eindeutige ID aus Register.txt mit der eines Sch+lers übereinstimmt
+	public Student compareID(String ID){ //Prüft ob Eindeutige ID aus Register.txt mit der eines Sch+lers übereinstimmt gna
 		
 		Student s = null;
 		
