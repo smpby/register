@@ -1,21 +1,19 @@
 package de.dhbw.vs.fpr.register;
 
-import java.io.Console;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.lang.System;
 
 public class ClassRegister {
 
 	ArrayList<Class> theClasses = new ArrayList<Class>();
 	ArrayList<Teacher> teacherArray = new ArrayList<Teacher>();
+	ArrayList<String> theEntries = new ArrayList<String>();
 
-	public void ReadData(String path) {
-
-		try {
+	public void ReadData(String path) throws FileNotFoundException {
 
 			StringBuilder sb = new StringBuilder();
 
@@ -25,58 +23,59 @@ public class ClassRegister {
 
 			String s = new String();
 
-			while (fileScanner.hasNextLine()) {
-				s = fileScanner.nextLine();
-				// System.out.println(s);
-				sb.append(s + "\n");
+		while (fileScanner.hasNextLine()) {
+			s = fileScanner.nextLine();
+			// System.out.println(s);
+			sb.append(s + "\n");
 
-			}
-			// String der Textdatei wird im Array helper nach Klassen aufgeteilt
-			String[] helper = sb.toString().split("<class>");
+		}
+		// String der Textdatei wird im Array helper nach Klassen aufgeteilt
+		String[] helper = sb.toString().split("<class>");
 
-			// es werden Klassenobjekte erzeugt die die Klassenlisten speichern
+		// es werden Klassenobjekte erzeugt die die Klassenlisten speichern
 
-			for (int i = 1; i < helper.length; i++) {
-				Class k = new Class(helper[i].substring(0, 3)); // Holt ID der
-																// Klassen aus
-																// Textdatei
+		for (int i = 1; i < helper.length; i++) {
 
-				k.createClass(helper[i]);
-				theClasses.add(k);
-			}
+			String classID = new String(helper[i].substring(0, 3));
+			Class k = new Class(helper[i].substring(0, 3)); // Holt ID der
+															// Klassen aus
+															// Textdatei
 
-		} catch (Exception e) {
-			System.out.println(e);
+			k.createClass(helper[i]);
+			theClasses.add(k);
 		}
 
 	}
 
-	public void eintragzuOrdnen(String path) {
+	public void eintragzuOrdnen(String path)throws FileNotFoundException { // Besser als
+		// Try Catch
+		// da wir d
 		File myRegister = new File(path + "/register.txt");
-		Scanner fileScanner;
-		try {
-			fileScanner = new Scanner(myRegister);
-			StringBuilder sb = new StringBuilder();
 
-			while (fileScanner.hasNextLine()) {// Hallo
+		 Scanner fileScanner = new Scanner(myRegister);
+		StringBuilder sb = new StringBuilder();
 
-				sb.append(fileScanner.nextLine() + "\n");
+		while (fileScanner.hasNextLine()) {// Hallo
 
-			}
-			String klassen[] = sb.toString().split(";"); // teilt Register.txt
+			sb.append(fileScanner.nextLine() + "\n");
+			
+		}
+			theEntries.add(sb.toString()); //Wir speichern die eingelesene Datei in einem Array um am ende wieder in die Textdatei schreiben zu können
+			String [] entryArray = sb.toString().split(";"); // teilt Register.txt
 															// in einzelne
 															// klassenbereiche
 
-			if (klassen.length % 3 == 1) { // Wenn Rest = 1 dann ist die Datei
+			if (entryArray.length % 3 == 1) { // Wenn Rest = 1 dann ist die Datei
 											// jeweils mit x einträgen à 3
 											// Blöcke befüllt.
 
 				Student s = null;
-				for (int i = 0; i < klassen.length - 1; i = i + 3) {
+				for (int i = 0; i < entryArray.length - 1; i = i + 3) {
 
-					s = findStudent(klassen[i + 1].substring(0, 5));
-					s.addEintrag(new Entry(klassen[i + 3], klassen[i + 2],
-							klassen[i + 1])); // Eintrag
+					s = findReference(entryArray[i + 1].substring(0, 5));
+					
+					s.addEintrag(new Entry(entryArray[i + 3], entryArray[i + 2],
+							entryArray[i + 1])); // Eintrag
 												// wird
 												// jeweiligem
 												// Schüler
@@ -87,14 +86,11 @@ public class ClassRegister {
 				System.out.println("Dataset of Register.txt is icomplete!");
 			}
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
-	}
+	
 
-	public Student findStudent(String searchID) {
+	public Student findReference(String searchID) {
 
 		String compareClassID = searchID.substring(0, 3); // Eindeutige
 															// KlassenID wird
@@ -105,17 +101,19 @@ public class ClassRegister {
 
 		Student s = null;
 
-		if (findKlasse(compareClassID) != null) {
-			Class k = findKlasse(compareClassID);
-			if (k.compareID(comparePupilID) != null) {
-				s = k.compareID(comparePupilID);
+		if (findClass(compareClassID) != null) {
+			Class k = findClass(compareClassID); // Ordnet Klasse einem
+													// Temporären Attribut zu
+			if (k.findStudent(comparePupilID) != null) {
+				s = k.findStudent(comparePupilID); // Ordnent einem Temporären
+													// Attribut den jeweiligen
+													// Schüler zu
 
 			} else {
 				System.out.println("Leider ist Schueler mit ID "
 						+ comparePupilID + " nicht vorhanden");
 			}
 
-			System.out.println("hat geklappt!");
 		} else {
 			System.out.println("Leider ist keine Klasse mit der ID "
 					+ compareClassID + " vorhanden!!");
@@ -126,7 +124,7 @@ public class ClassRegister {
 
 	}
 
-	public Class findKlasse(String ID) {
+	public Class findClass(String ID) {
 		Class k = null;
 
 		for (int i = 0; i < theClasses.size(); i++) {
@@ -143,7 +141,7 @@ public class ClassRegister {
 		return k;
 	}
 
-	public void listClasses() {
+	public void listClasses() { // Listet alle Klassen auf mit allen Schülern
 		for (int i = 0; i < theClasses.size(); i++) {
 			System.out.println("");
 			System.out.println("_______Klasse " + theClasses.get(i).getID()
@@ -153,6 +151,15 @@ public class ClassRegister {
 		}
 	}
 
+	public void listClassesWithEntrys() { // Listet alle Klassen mit entrys
+		for (int i = 0; i < theClasses.size(); i++) {
+			if (theClasses.get(i).areThereEntrys()) {
+				System.out.println("Klasse hat eintraege:       "
+						+ theClasses.get(i).getID());
+			} else {
+				System.out.println("Klasse hat keine eintraege: "
+						+ theClasses.get(i).getID());
+			}} }
 	public void generateEntry(String eindeutigeID) {
 
 	}
@@ -198,6 +205,27 @@ public class ClassRegister {
 		}
 	}
 
+	public void showEntryforOneStudent(String eindeutigeID) {
+		findReference(eindeutigeID).getEntrys();
+	}
+
+	public void addEntryToArray(String entryToAdd) {
+		theEntries.add(entryToAdd);
+	}
+	
+	public void writeEntries() throws FileNotFoundException{
+		
+		PrintWriter out = new PrintWriter("/Users/Patrice/Documents/workspace/ClassRegister/src/de/dhbw/vs/fpr/register/register.txt");
+		
+		for(int i=0;i< theEntries.size();i++){
+			
+			//out.write(theEntries.get(i));
+			
+			out.println(theEntries.get(i));
+		}
+		out.close(); }
+
+		
 	void printTeachers() {
 		System.out.println(teacherArray.toString());
 	}
@@ -244,8 +272,8 @@ public class ClassRegister {
 		if (chosenClass == "R") {
 			return null; // no Class was choosen (and R was pressed) --> return to authentication
 		}
-		if (findKlasse(chosenClass) != null)
-			return findKlasse(chosenClass);
+		if (findClass(chosenClass) != null)
+			return findClass(chosenClass);
 		else
 			return chooseClass();//give Teacher the oportunity to enter a valid Classname
 	}
