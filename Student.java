@@ -65,6 +65,6 @@ public class Student {
 		return eindeutigeID;
 	}
 public boolean checkEntrys(){//checks if there are any entrys for this student
-	return !eintraege.isEmpty();
+	return eintraege.isEmpty();
 }
 }
