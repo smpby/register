@@ -10,8 +10,8 @@ public class Class {
 	public Class(String ID) {
 		classID = ID;
 	}
-	
-	public Class(Class c){
+
+	public Class(Class c) {
 		this.classID = c.classID;
 		this.students = c.students;
 	}
@@ -29,29 +29,10 @@ public class Class {
 			for (int i = 1; i < allStudents.length; i = i + 3) {
 
 				Student s = new Student(allStudents[i], allStudents[i + 1],
-						allStudents[i + 2].substring(0, 2), this.classID); // Schueler
-																			// wird
-																			// erzeugt,
-																			// Array
-																			// Index
-																			// 0
-																			// ist
-																			// für
-																			// die
-																			// ID
-																			// Reserviert,
-																			// danach
-																			// sind
-																			// immer
-																			// 3
-																			// nachfolgende
-																			// ArrayPlätze
-																			// mit
-																			// Name,
-																			// Vorname
-																			// und
-																			// Schüler
-																			// ID
+						allStudents[i + 2].substring(0, 2), this.classID);
+				// Schueler wird erzeugt, Array Index 0 ist für die ID
+				// Reserviert, danach sind immer 3 nachfolgende ArrayPlätze
+				// mit Name, Vorname und Schüler ID
 				students.add(s);
 
 			}
@@ -91,18 +72,21 @@ public class Class {
 		}
 	}
 
-	public void listStudents() throws NullPointerException { // Listet alle Studenten einer Klasse auf
+	public void listStudents() throws NullPointerException { // Listet alle
+																// Studenten
+																// einer Klasse
+																// auf
 		for (int i = 1; i < students.size(); i++) {
 
-			System.out.println("Schüler: " + students.get(i).getID()
-					+ " " + students.get(i).getName());
+			System.out.println("Schüler: " + students.get(i).getID() + " "
+					+ students.get(i).getName());
 
 		}
 	}
 
 	public boolean areThereEntrys() {// prüft ob min 1 Schüler min 1
-											// eintrag hat, gibt False zurück
-											// wenn es keine Eintraege gibt
+										// eintrag hat, gibt False zurück
+										// wenn es keine Eintraege gibt
 
 		boolean b = false;
 		for (int i = 1; i < students.size(); i++) {

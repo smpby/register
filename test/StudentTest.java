@@ -20,5 +20,8 @@ public class StudentTest {
 	public void testGeteindeutigeID() {
 		fail("Not yet implemented");
 	}
+	/** Test Case for Teachers (check if the number in the arraylist maches the number in the file
+	 * 
+	 */
 
 }

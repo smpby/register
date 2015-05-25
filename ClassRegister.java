@@ -9,19 +9,28 @@ import java.util.Scanner;
 
 public class ClassRegister {
 
+	private String path;
 	ArrayList<Class> theClasses = new ArrayList<Class>();
 	ArrayList<Teacher> teacherArray = new ArrayList<Teacher>();
 	ArrayList<String> theEntries = new ArrayList<String>();
 
-	public void ReadData(String path) throws FileNotFoundException {
+	/**
+	 * This constructor is ok because there is no need to change the path to the
+	 * datasets dynamically!
+	 */
+	ClassRegister(String path) {
+		this.path = path;
+	}
 
-			StringBuilder sb = new StringBuilder();
+	public void ReadData() throws FileNotFoundException {
 
-			File myfile = new File(path + "/student.txt");
+		StringBuilder sb = new StringBuilder();
 
-			Scanner fileScanner = new Scanner(myfile);
+		File myfile = new File(path + "/student.txt");
 
-			String s = new String();
+		Scanner fileScanner = new Scanner(myfile);
+
+		String s = new String();
 
 		while (fileScanner.hasNextLine()) {
 			s = fileScanner.nextLine();
@@ -47,48 +56,47 @@ public class ClassRegister {
 
 	}
 
-	public void eintragzuOrdnen(String path)throws FileNotFoundException { // Besser als
-		// Try Catch
-		// da wir d
+	public void eintragzuOrdnen() throws FileNotFoundException {
+		// Besser als Try Catch da wir d??
 		File myRegister = new File(path + "/register.txt");
 
-		 Scanner fileScanner = new Scanner(myRegister);
+		Scanner fileScanner = new Scanner(myRegister);
 		StringBuilder sb = new StringBuilder();
 
 		while (fileScanner.hasNextLine()) {// Hallo
 
 			sb.append(fileScanner.nextLine() + "\n");
-			
-		}
-			theEntries.add(sb.toString()); //Wir speichern die eingelesene Datei in einem Array um am ende wieder in die Textdatei schreiben zu können
-			String [] entryArray = sb.toString().split(";"); // teilt Register.txt
-															// in einzelne
-															// klassenbereiche
 
-			if (entryArray.length % 3 == 1) { // Wenn Rest = 1 dann ist die Datei
+		}
+		theEntries.add(sb.toString()); // Wir speichern die eingelesene Datei in
+										// einem Array um am ende wieder in die
+										// Textdatei schreiben zu können
+		String[] entryArray = sb.toString().split(";"); // teilt Register.txt
+														// in einzelne
+														// klassenbereiche
+
+		if (entryArray.length % 3 == 1) { // Wenn Rest = 1 dann ist die Datei
 											// jeweils mit x einträgen à 3
 											// Blöcke befüllt.
 
-				Student s = null;
-				for (int i = 0; i < entryArray.length - 1; i = i + 3) {
+			Student s = null;
+			for (int i = 0; i < entryArray.length - 1; i = i + 3) {
 
-					s = findReference(entryArray[i + 1].substring(0, 5));
-					
-					s.addEintrag(new Entry(entryArray[i + 3], entryArray[i + 2],
-							entryArray[i + 1])); // Eintrag
+				s = findReference(entryArray[i + 1].substring(0, 5));
+
+				s.addEintrag(new Entry(entryArray[i + 3], entryArray[i + 2],
+						entryArray[i + 1])); // Eintrag
 												// wird
 												// jeweiligem
 												// Schüler
 												// hinzugefügt
-				}
-
-			} else {
-				System.out.println("Dataset of Register.txt is icomplete!");
 			}
 
+		} else {
+			System.out.println("Dataset of Register.txt is icomplete!");
 		}
 
-	
+	}
 
 	public Student findReference(String searchID) {
 
@@ -159,50 +167,48 @@ public class ClassRegister {
 			} else {
 				System.out.println("Klasse hat keine eintraege: "
 						+ theClasses.get(i).getID());
-			}} }
+			}
+		}
+	}
+
 	public void generateEntry(String eindeutigeID) {
 
 	}
 
-	public void readTeacher(String path) {
+	public void readTeacher() throws FileNotFoundException {
 		// Lehrer einlesen
 		String file = path + "/teacher.txt";
 		File myRegister = new File(file);
 		Scanner fileScanner;
-		try {
-			fileScanner = new Scanner(myRegister);
+		fileScanner = new Scanner(myRegister);
 
-			StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 
-			while (fileScanner.hasNextLine()) {
+		while (fileScanner.hasNextLine()) {
 
-				sb.append(fileScanner.nextLine() + "\n");
+			sb.append(fileScanner.nextLine() + "\n");
 
-			}
-			String stringcopy[] = sb.toString().split(";"); // teilt
-															// Register.txt
-															// in einzelne
-															// klassenbereiche
-
-			if (stringcopy.length % 5 == 1) { // Wenn Rest = 1 dann ist die
-												// Datei
-												// jeweils mit x einträgen à 3
-												// Blöcke befüllt.
-				for (int i = 1; i < stringcopy.length; i = i + 5) {
-					Teacher t = new Teacher(stringcopy[0 + i],
-							stringcopy[1 + i], stringcopy[2 + i],
-							stringcopy[3 + i], stringcopy[4 + i].trim());
-					// Create new Instance of Teacher - with all the necessary
-					// Parameters from file
-					teacherArray.add(t);
-
-				}
-			}
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		String stringcopy[] = sb.toString().split(";"); // teilt
+														// Register.txt
+														// in einzelne
+														// klassenbereiche
+
+		if (stringcopy.length % 5 == 1) { // Wenn Rest = 1 dann ist die
+											// Datei
+											// jeweils mit x einträgen à 3
+											// Blöcke befüllt.
+			for (int i = 1; i < stringcopy.length; i = i + 5) {
+				Teacher t = new Teacher(stringcopy[0 + i], stringcopy[1 + i],
+						stringcopy[2 + i], stringcopy[3 + i],
+						stringcopy[4 + i].trim());
+				// Create new Instance of Teacher - with all the necessary
+				// Parameters from file
+				teacherArray.add(t);
+
+			}
+		}
+
 	}
 
 	public void showEntryforOneStudent(String eindeutigeID) {
@@ -212,30 +218,31 @@ public class ClassRegister {
 	public void addEntryToArray(String entryToAdd) {
 		theEntries.add(entryToAdd);
 	}
-	
-	public void writeEntries() throws FileNotFoundException{
-		
-		PrintWriter out = new PrintWriter("/Users/Patrice/Documents/workspace/ClassRegister/src/de/dhbw/vs/fpr/register/register.txt");
-		
-		for(int i=0;i< theEntries.size();i++){
-			
-			//out.write(theEntries.get(i));
-			
+
+	public void writeEntries() throws FileNotFoundException {
+
+		PrintWriter out = new PrintWriter(path + "/register.txt");
+
+		for (int i = 0; i < theEntries.size(); i++) {
+
+			// out.write(theEntries.get(i));
+
 			out.println(theEntries.get(i));
 		}
-		out.close(); }
+		out.close();
+	}
 
-		
 	void printTeachers() {
 		System.out.println(teacherArray.toString());
 	}
 
-	boolean authenticate() {
+	boolean authenticate() throws FileNotFoundException {
 		Scanner sc = new Scanner(System.in);
 		System.out
 				.println("Bitte authentifizieren Sie sich mit ihrem Nutzernamen oder beenden Sie den Programmablauf mit Q:");
 		String userName = sc.nextLine();
-		if (userName == "Q") {
+		if (userName.equals("Q")) {
+			writeEntries();
 			System.exit(0);
 		}
 		System.out
@@ -270,11 +277,13 @@ public class ClassRegister {
 				.println("Bitte wählen sie eine Klasse aus oder gehen Sie zu der Authentifizierung mit R zurück:");
 		String chosenClass = sc.nextLine();
 		if (chosenClass == "R") {
-			return null; // no Class was choosen (and R was pressed) --> return to authentication
+			return null; // no Class was choosen (and R was pressed) --> return
+							// to authentication
 		}
 		if (findClass(chosenClass) != null)
 			return findClass(chosenClass);
 		else
-			return chooseClass();//give Teacher the oportunity to enter a valid Classname
+			return chooseClass();// give Teacher the oportunity to enter a valid
+									// Classname
 	}
 }
