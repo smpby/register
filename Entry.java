@@ -11,15 +11,20 @@ public class Entry {
 		notiz = n;
 		datum = date;
 		IDofPupil = ID;
+		createEntry();
 	}
 	
-	public String createEntry(){
+	public void createEntry(){
 		StringBuilder s = new StringBuilder();
 		s.append(";" +IDofPupil+ ";");
-		s.append(";" +datum+ ";");
-		s.append(";" +notiz+ ";");
+		s.append(datum+ ";");
+		s.append(notiz);
 		
-		return s.toString() ;
+		completeEntry = s.toString() ;
+	}
+	
+	public String getEntryString(){
+		return completeEntry;
 	}
 
 	public String getNotiz() {

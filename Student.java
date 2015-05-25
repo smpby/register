@@ -24,7 +24,7 @@ public class Student {
 	}
 
 	public void addEintrag(Entry e) {
-		eintraege.add(e);
+		this.eintraege.add(e);
 	}
 
 	public void setID(String dieseID) {
@@ -47,14 +47,14 @@ public class Student {
 		return ID;
 	}
 
-	public void getEintrag() {
+	public void getEntrys() {
 		String s = null;
 		if (eintraege.isEmpty()) {
 			System.out.println("Keine Eintraege vorhanden!");
 		} else {
-			for (int i = 0; i < eintraege.size(); i++) {
-				System.out.println("");
-				System.out.println(eintraege.get(i).getNotiz());
+			for (int i = 0; i < this.eintraege.size(); i++) {
+				
+				System.out.println(this.eintraege.get(i).getNotiz());
 
 			}
 		}
@@ -64,5 +64,7 @@ public class Student {
 	public String geteindeutigeID() {
 		return eindeutigeID;
 	}
-
+public boolean checkEntrys(){//checks if there are any entrys for this student
+	return !eintraege.isEmpty();
+}
 }
