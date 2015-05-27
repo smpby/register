@@ -19,7 +19,7 @@ public class ClassRegister {
 	 */
 	ClassRegister(String path) {
 		this.path = path;
-	}
+	}//HI
 
 	public void ReadData() throws FileNotFoundException {
 
