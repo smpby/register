@@ -155,7 +155,7 @@ public class StartRegister {
 		tmpEntry = new Entry(input("Was hat der Schüler verbrochen?"),
 				input("fügen Sie bitte noch das Datum hinzu (DD.MM.JJJJ"),
 				tmpStudent.geteindeutigeID());
-		k1.addEntryToArray(tmpEntry.getEntryString());
+		tmpStudent.addEintrag(tmpEntry);
 	}
 
 }

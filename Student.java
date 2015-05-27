@@ -48,12 +48,11 @@ public class Student {
 	}
 
 	public void getEntrys() {
-		String s = null;
 		if (eintraege.isEmpty()) {
 			System.out.println("Keine Eintraege vorhanden!");
 		} else {
 			for (int i = 0; i < this.eintraege.size(); i++) {
-				
+
 				System.out.println(this.eintraege.get(i).getNotiz());
 
 			}
@@ -64,7 +63,16 @@ public class Student {
 	public String geteindeutigeID() {
 		return eindeutigeID;
 	}
-public boolean checkEntrys(){//checks if there are any entrys for this student
-	return eintraege.isEmpty();
-}
+
+	public boolean checkEntrys() {// checks if there are any entrys for this
+									// student
+		return eintraege.isEmpty();
+	}
+
+	public int getEntrySize() {
+		return eintraege.size();
+	}
+	public String returnEntry(int i){
+		return eintraege.get(i).toString();
+	}
 }

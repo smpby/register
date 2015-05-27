@@ -68,7 +68,7 @@ public class Class {
 	public void listEntrysOfStudents() { // listet alle eintraege aller Schüler
 		for (int i = 1; i < students.size(); i++) {
 			students.get(i).getEntrys();
-			System.out.println("Entrys listed");
+			System.out.println("Einträge ausgegeben");
 		}
 	}
 

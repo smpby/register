@@ -12,7 +12,6 @@ public class ClassRegister {
 	private String path;
 	ArrayList<Class> theClasses = new ArrayList<Class>();
 	ArrayList<Teacher> teacherArray = new ArrayList<Teacher>();
-	ArrayList<String> theEntries = new ArrayList<String>();
 
 	/**
 	 * This constructor is ok because there is no need to change the path to the
@@ -68,9 +67,6 @@ public class ClassRegister {
 			sb.append(fileScanner.nextLine() + "\n");
 
 		}
-		theEntries.add(sb.toString()); // Wir speichern die eingelesene Datei in
-										// einem Array um am ende wieder in die
-										// Textdatei schreiben zu können
 		String[] entryArray = sb.toString().split(";"); // teilt Register.txt
 														// in einzelne
 														// klassenbereiche
@@ -215,19 +211,19 @@ public class ClassRegister {
 		findReference(eindeutigeID).getEntrys();
 	}
 
-	public void addEntryToArray(String entryToAdd) {
-		theEntries.add(entryToAdd);
-	}
-
 	public void writeEntries() throws FileNotFoundException {
 
 		PrintWriter out = new PrintWriter(path + "/register.txt");
 
-		for (int i = 0; i < theEntries.size(); i++) {
+		for (int i = 0; i < theClasses.size(); i++) {
 
-			// out.write(theEntries.get(i));
+			for (int j = 0; j < theClasses.get(i).sizeInfo(); j++) {
 
-			out.println(theEntries.get(i));
+				for (int k = 0; k < theClasses.get(i).arrayInfo(j)
+						.getEntrySize(); k++) {
+					out.println(theClasses.get(i).arrayInfo(j).returnEntry(k));
+				}
+			}
 		}
 		out.close();
 	}
