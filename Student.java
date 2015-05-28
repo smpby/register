@@ -8,7 +8,6 @@ public class Student {
 	private String vorname = new String();
 
 	private ArrayList<Entry> eintraege = new ArrayList<Entry>();
-	private Class classID;
 	private String eindeutigeID;
 	private String ID;
 

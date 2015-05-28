@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Class {
 
 	private String classID;
-	private ArrayList<Student> students = new ArrayList<Student>();
+	private ArrayList<Student> studentsArray = new ArrayList<Student>();
 
 	public Class(String ID) {
 		classID = ID;
@@ -13,7 +13,7 @@ public class Class {
 
 	public Class(Class c) {
 		this.classID = c.classID;
-		this.students = c.students;
+		this.studentsArray = c.studentsArray;
 	}
 
 	public void createClass(String pupilList) {
@@ -21,7 +21,7 @@ public class Class {
 
 		Student tmpStudent = new Student(allStudents[1], allStudents[2],
 				allStudents[3].substring(0, 2), this.classID);
-		students.add(tmpStudent);
+		studentsArray.add(tmpStudent);
 
 		if (allStudents.length % 3 == 1) { // Prüfung ob der Array durch 3
 											// Teilbar ist und 1 übrig bleibt
@@ -33,7 +33,7 @@ public class Class {
 				// Schueler wird erzeugt, Array Index 0 ist für die ID
 				// Reserviert, danach sind immer 3 nachfolgende ArrayPlätze
 				// mit Name, Vorname und Schüler ID
-				students.add(s);
+				studentsArray.add(s);
 
 			}
 		} else {
@@ -42,8 +42,8 @@ public class Class {
 
 	}
 
-	public void addPupil(Student s) {
-		students.add(s);
+	public void addStudent(Student s) {
+		studentsArray.add(s);
 	}
 
 	public String getID() {
@@ -56,9 +56,9 @@ public class Class {
 
 		Student s = null;
 
-		for (int i = 0; i < students.size(); i++) {
-			if (students.get(i).getID().equals(ID)) {
-				s = students.get(i);
+		for (int i = 0; i < studentsArray.size(); i++) {
+			if (studentsArray.get(i).getID().equals(ID)) {
+				s = studentsArray.get(i);
 			}
 		}
 
@@ -66,8 +66,8 @@ public class Class {
 	}
 
 	public void listEntrysOfStudents() { // listet alle eintraege aller Schüler
-		for (int i = 1; i < students.size(); i++) {
-			students.get(i).getEntrys();
+		for (int i = 1; i < studentsArray.size(); i++) {
+			studentsArray.get(i).getEntrys();
 			System.out.println("Einträge ausgegeben");
 		}
 	}
@@ -76,10 +76,11 @@ public class Class {
 																// Studenten
 																// einer Klasse
 																// auf
-		for (int i = 1; i < students.size(); i++) {
+		for (int i = 1; i < studentsArray.size(); i++) {
 
-			System.out.println("Schüler: " + students.get(i).getID() + " "
-					+ students.get(i).getName());
+			System.out.println("Schüler " + studentsArray.get(i).getID() + " "
+					+ studentsArray.get(i).getName() + " "
+					+ studentsArray.get(i).getVorname());
 
 		}
 	}
@@ -89,8 +90,8 @@ public class Class {
 										// wenn es keine Eintraege gibt
 
 		boolean b = false;
-		for (int i = 1; i < students.size(); i++) {
-			if (!students.get(i).checkEntrys()) {
+		for (int i = 1; i < studentsArray.size(); i++) {
+			if (!studentsArray.get(i).checkEntrys()) {
 				b = true;
 			}
 
@@ -100,11 +101,11 @@ public class Class {
 
 	public Student arrayInfo(int i) {
 
-		return students.get(i);
+		return studentsArray.get(i);
 	}
 
 	public int sizeInfo() {
-		return students.size();
+		return studentsArray.size();
 	}
 
 }

@@ -12,52 +12,26 @@ public class StartRegister {
 	static Entry tmpEntry;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		k1 = new ClassRegister(args[0]);
 		try {
 			k1.ReadData();
+			k1.eintragzuOrdnen();
+			k1.readTeacher();
+
+			stageZero();
+
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-		try {
-			k1.eintragzuOrdnen();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			k1.eintragzuOrdnen();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			k1.readTeacher();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			stageZero();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//??
-		try {
-
-		} catch (NullPointerException e) {
-			System.out.println("Input Error");
-		}
-
 	}
 
-	public static String input(String text) { // Scanner Objekt als Methode ist
-												// Praktischer als immer zu
-												// Tippen
+	/**
+	 * Scanner Objekt als Methode ist Praktischer als immer zu Tippen
+	 */
+	public static String input(String text) {
 		System.out.println(text);
 		Scanner s = new Scanner(System.in);
 
@@ -65,14 +39,23 @@ public class StartRegister {
 	}
 
 	public static void stageZero() throws FileNotFoundException {
-		while (!k1.authenticate())
-			;// Do as long aus authentification failed
-		stageOne();
-		stageZero();// permanent loop --> exiting is handeled via authenticate
+		boolean notauthenticated=true;
+		while (notauthenticated){
+			String userName = input("Bitte authentifizieren Sie sich mit ihrem Nutzernamen oder beenden Sie den Programmablauf mit Q:");
+			if (userName.equals("Q")) {
+				k1.writeEntries();
+				System.exit(0);
+			}
 
+			String passWord = input("Bitte geben Sie jetzt Ihr Password ein (Eingabefeld nicht verdeckt):");
+			notauthenticated=!k1.authenticate(userName, passWord);
+		}// Do as long aus authentification failed
+			
+		stageOne();
 	}
 
-	public static void stageOne() throws NullPointerException, FileNotFoundException {
+	public static void stageOne() throws NullPointerException,
+			FileNotFoundException {
 		k1.listClassesWithEntrys();
 		String in = input("Wählen Sie die Klasse");
 
@@ -82,18 +65,19 @@ public class StartRegister {
 
 		try {
 			tmpClass = new Class(k1.findClass(in));
-			System.out.println("Klasse: " + tmpClass.getID());
+			System.out.println("Klasse " + tmpClass.getID() + " gewählt");
 
 		} catch (NullPointerException e) {
 			System.out
-					.println("Diese Klasse ist leider nicht Vorhanden! Versuchen Sie es Erneut!");
+					.println("Diese Klasse ist leider nicht Vorhanden! Versuchen Sie es erneut mit valider Klassennummer!");
 			stageOne();
 		}
 
 		stageTwo();
 	}
 
-	public static void stageTwo() throws NullPointerException, FileNotFoundException {
+	public static void stageTwo() throws NullPointerException,
+			FileNotFoundException {
 		tmpClass.listStudents();
 		String in = input("Wählen Sie einen Schüler");
 		if (in.equals("R")) {
@@ -102,23 +86,24 @@ public class StartRegister {
 
 		try {
 			tmpStudent = tmpClass.findStudent(in);
-			System.out.println("Klasse: " + tmpClass.getID() + "Schüler: "
-					+ tmpStudent.getID());
+			System.out.println("Schüler " + tmpStudent.getID() + "der Klasse "
+					+ tmpClass.getID() + " gewählt");
 
 		} catch (NullPointerException e) {
 			System.out
-					.println("Dieser Schüler ist leider nicht Vorhanden! Versuchen Sie es Erneut!");
+					.println("Dieser Schüler ist leider nicht Vorhanden! Bitte versuchen Sie es erneut mit valider Schülernummer!");
 			stageTwo();
 		}
 
 		stageThree();
 	}
 
-	public static void stageThree() throws NullPointerException, FileNotFoundException {
+	public static void stageThree() throws NullPointerException,
+			FileNotFoundException {
 		System.out.println(tmpStudent.geteindeutigeID() + "    "
 				+ tmpStudent.getName());
 		System.out.println();
-		String in = input("View Entrys Press: 1 || Create Entry (2) || Return to choose Student (R)");
+		String in = input("Einträge anzeigen 1 || Neuen Eintrag erstellen 2 || Zur Schülerwahl zurückkehren R");
 
 		if (in.equals("1") || in.equals("2") || in.equals("R")) {
 			if (in.equals("R")) {
@@ -133,27 +118,16 @@ public class StartRegister {
 				stageThree();
 			}
 		} else {
-			System.out.println("Eingabefehler bitte Wiederholen!");
+			System.out.println("Eingabe fehlerhaft. Bitte erneut versuchen!");
 			stageThree();
 		}
 
 	}
 
-	/**
-	 * public static void stageFour() { String in =
-	 * input("Programm Beenden?(1) von Neuem Beginnen?(2)"); if (in.equals("1")
-	 * || in.equals("2")) { if (in.equals("1")) { try { k1.writeEntries();
-	 * System.exit(1); } catch (FileNotFoundException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } } if (in.equals("2")) {
-	 * stageZero(); }
-	 * 
-	 * } else { System.out.println("Bitte Aktion wählen!"); stageFour(); }
-	 * 
-	 * }
-	 */
 	public static void stackEntryArray() {
-		tmpEntry = new Entry(input("Was hat der Schüler verbrochen?"),
-				input("fügen Sie bitte noch das Datum hinzu (DD.MM.JJJJ"),
+		tmpEntry = new Entry(
+				input("Was hat der Schüler verbrochen?"),
+				input("Fügen Sie bitte noch das Datum hinzu (Im Format: DD.MM.JJJJ"),
 				tmpStudent.geteindeutigeID());
 		tmpStudent.addEintrag(tmpEntry);
 	}

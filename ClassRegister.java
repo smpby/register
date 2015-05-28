@@ -1,6 +1,5 @@
 package de.dhbw.vs.fpr.register;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 public class ClassRegister {
 
 	private String path;
-	ArrayList<Class> theClasses = new ArrayList<Class>();
+	ArrayList<Class> classesArray = new ArrayList<Class>();
 	ArrayList<Teacher> teacherArray = new ArrayList<Teacher>();
 
 	/**
@@ -43,14 +42,11 @@ public class ClassRegister {
 		// es werden Klassenobjekte erzeugt die die Klassenlisten speichern
 
 		for (int i = 1; i < helper.length; i++) {
-
-			String classID = new String(helper[i].substring(0, 3));
-			Class k = new Class(helper[i].substring(0, 3)); // Holt ID der
-															// Klassen aus
-															// Textdatei
+			Class k = new Class(helper[i].substring(0, 3));
+			// Holt ID der Klassen aus Textdatei
 
 			k.createClass(helper[i]);
-			theClasses.add(k);
+			classesArray.add(k);
 		}
 
 	}
@@ -81,11 +77,9 @@ public class ClassRegister {
 				s = findReference(entryArray[i + 1].substring(0, 5));
 
 				s.addEintrag(new Entry(entryArray[i + 3], entryArray[i + 2],
-						entryArray[i + 1])); // Eintrag
-												// wird
-												// jeweiligem
-												// Schüler
-												// hinzugefügt
+						entryArray[i + 1]));	
+				// Eintrag wird jeweiligem Schüler hinzugefügt
+				 
 			}
 
 		} else {
@@ -131,14 +125,17 @@ public class ClassRegister {
 	public Class findClass(String ID) {
 		Class k = null;
 
-		for (int i = 0; i < theClasses.size(); i++) {
+		for (int i = 0; i < classesArray.size(); i++) {
 
-			if (theClasses.get(i).getID().equals(ID)) { // Wenn ID mit KlassenID
-														// übereinstimmt soll
-														// dem Klassenobjekt k
-														// zugeordnet werden
+			if (classesArray.get(i).getID().equals(ID)) { // Wenn ID mit
+															// KlassenID
+															// übereinstimmt
+															// soll
+															// dem Klassenobjekt
+															// k
+															// zugeordnet werden
 
-				k = theClasses.get(i);
+				k = classesArray.get(i);
 			}
 		}
 
@@ -146,29 +143,25 @@ public class ClassRegister {
 	}
 
 	public void listClasses() { // Listet alle Klassen auf mit allen Schülern
-		for (int i = 0; i < theClasses.size(); i++) {
+		for (int i = 0; i < classesArray.size(); i++) {
 			System.out.println("");
-			System.out.println("_______Klasse " + theClasses.get(i).getID()
+			System.out.println("_______Klasse " + classesArray.get(i).getID()
 					+ " beginnt______");
 			System.out.println("");
-			theClasses.get(i).listStudents();
+			classesArray.get(i).listStudents();
 		}
 	}
 
 	public void listClassesWithEntrys() { // Listet alle Klassen mit entrys
-		for (int i = 0; i < theClasses.size(); i++) {
-			if (theClasses.get(i).areThereEntrys()) {
-				System.out.println("Klasse hat eintraege:       "
-						+ theClasses.get(i).getID());
+		for (int i = 0; i < classesArray.size(); i++) {
+			if (classesArray.get(i).areThereEntrys()) {
+				System.out.println("Klasse " + classesArray.get(i).getID()
+						+ " hat Einträge");
 			} else {
-				System.out.println("Klasse hat keine eintraege: "
-						+ theClasses.get(i).getID());
+				System.out.println("Klasse " + classesArray.get(i).getID()
+						+ " hat keine Einträge");
 			}
 		}
-	}
-
-	public void generateEntry(String eindeutigeID) {
-
 	}
 
 	public void readTeacher() throws FileNotFoundException {
@@ -215,13 +208,13 @@ public class ClassRegister {
 
 		PrintWriter out = new PrintWriter(path + "/register.txt");
 
-		for (int i = 0; i < theClasses.size(); i++) {
+		for (int i = 0; i < classesArray.size(); i++) {
 
-			for (int j = 0; j < theClasses.get(i).sizeInfo(); j++) {
+			for (int j = 0; j < classesArray.get(i).sizeInfo(); j++) {
 
-				for (int k = 0; k < theClasses.get(i).arrayInfo(j)
+				for (int k = 0; k < classesArray.get(i).arrayInfo(j)
 						.getEntrySize(); k++) {
-					out.println(theClasses.get(i).arrayInfo(j).returnEntry(k));
+					out.println(classesArray.get(i).arrayInfo(j).returnEntry(k));
 				}
 			}
 		}
@@ -232,39 +225,20 @@ public class ClassRegister {
 		System.out.println(teacherArray.toString());
 	}
 
-	boolean authenticate() throws FileNotFoundException {
-		Scanner sc = new Scanner(System.in);
-		System.out
-				.println("Bitte authentifizieren Sie sich mit ihrem Nutzernamen oder beenden Sie den Programmablauf mit Q:");
-		String userName = sc.nextLine();
-		if (userName.equals("Q")) {
-			writeEntries();
-			System.exit(0);
-		}
-		System.out
-				.println("Bitte geben Sie jetzt Ihr Password ein (Eingabefeld bleibt nicht verdeckt):");
-		String passWord = sc.nextLine();
+	/**
+	 * 
+	 * @param userName
+	 *            of Possible User which is searched for in data
+	 * @param passWord
+	 * @return true for fitting username Password combination - else false
+	 */
+	boolean authenticate(String userName, String passWord) {
 		for (int i = 0; i < teacherArray.size(); i++) {
 			if (teacherArray.get(i).getUserName().equals(userName)) {
 				return teacherArray.get(i).getPassWord().equals(passWord);
 			}
 		}
 		return false;
-
-		/*
-		 * Console terminal = System.console(); System.out.println(terminal); if
-		 * (terminal != null) { String userName = terminal .readLine(
-		 * "Bitte authentifizieren Sie sich mit ihrem Nutzernamen oder beenden Sie den Programmablauf mit Q:"
-		 * ); if (userName == "Q") { System.exit(0); } char[] passWord =
-		 * terminal .readPassword(
-		 * "Bitte geben Sie jetzt Ihr Password ein (Eingabefeld bleibt verdeckt):"
-		 * ); for (int i = 0; i < teacherArray.size(); i++) { if
-		 * (teacherArray.get(i).getUserName() == userName &&
-		 * teacherArray.get(i).getPassWord() == passWord .toString()) { return
-		 * true; } }
-		 * 
-		 * } return false;
-		 */
 	}
 
 	Class chooseClass() {
