@@ -29,24 +29,12 @@ public class Entry {
 		return notiz;
 	}
 
-	public void setNotiz(String notiz) {
-		this.notiz = notiz;
-	}
-
 	public String getDatum() {
 		return datum;
 	}
 
-	public void setDatum(String datum) {
-		this.datum = datum;
-	}
-
 	public String getIDofPupil() {
 		return IDofPupil;
-	}
-
-	public void setIDofPupil(String iDofPupil) {
-		IDofPupil = iDofPupil;
 	}
 	
 }

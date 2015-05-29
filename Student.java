@@ -11,7 +11,7 @@ public class Student {
 	private String eindeutigeID;
 	private String ID;
 
-	public Student(String name, String firstName, String ID, String klassenID) {
+	public Student(String firstName, String name, String ID, String klassenID) {
 		this.name = name;
 		vorname = firstName;
 		this.ID = ID;
@@ -23,15 +23,31 @@ public class Student {
 	}
 
 	public void addEintrag(Entry e) {
-		this.eintraege.add(e);
-	}
+		if (!e.getNotiz().isEmpty()) {
+			// throw away empty entrys
+			if (eintraege.size() == 0) {
+				// in the case of no entrys: add entry
+				this.eintraege.add(e);
+			} else {
+				boolean tmpflag = false;
 
-	public void setID(String dieseID) {
-		ID = dieseID;
-	}
+				for (int i = 0; i < eintraege.size(); i++) {
 
-	public void setFirstName(String n) {
-		vorname = n;
+					if (this.eintraege.get(i).getDatum()
+							.contentEquals(e.getDatum())
+							&& this.eintraege.get(i).getNotiz()
+									.contentEquals(e.getNotiz())) {
+						// remember if entry exists already
+						tmpflag = true;
+					}
+
+				}
+				if (!tmpflag) {
+					// only add nonexisting entrys
+					this.eintraege.add(e);
+				}
+			}
+		}
 	}
 
 	public String getName() {
@@ -45,14 +61,24 @@ public class Student {
 	public String getID() {
 		return ID;
 	}
+	public Entry getEntry(int i){
+		return eintraege.get(i);
+	}
 
 	public void getEntrys() {
 		if (eintraege.isEmpty()) {
 			System.out.println("Keine Eintraege vorhanden!");
 		} else {
+			System.out.println("Datum      Eintrag");
 			for (int i = 0; i < this.eintraege.size(); i++) {
 
-				System.out.println(this.eintraege.get(i).getNotiz());
+				System.out.println(this.eintraege.get(i).getDatum() + " "
+						+ this.eintraege.get(i).getNotiz());
+				/**
+				 * prints the first 10 characters of the date (if the date is to
+				 * long caused by special input manner...) and than the entry
+				 * info
+				 */
 
 			}
 		}
@@ -71,7 +97,8 @@ public class Student {
 	public int getEntrySize() {
 		return eintraege.size();
 	}
-	public String returnEntry(int i){
+
+	public String returnEntry(int i) {
 		return eintraege.get(i).toString();
 	}
 }

@@ -16,11 +16,11 @@ public class ClassRegister {
 	 * This constructor is ok because there is no need to change the path to the
 	 * datasets dynamically!
 	 */
-	ClassRegister(String path) {
+	public ClassRegister(String path) {
 		this.path = path;
-	}//HI
+	}// HI
 
-	public void ReadData() throws FileNotFoundException {
+	public void readStudents() throws FileNotFoundException {
 
 		StringBuilder sb = new StringBuilder();
 
@@ -51,8 +51,7 @@ public class ClassRegister {
 
 	}
 
-	public void eintragzuOrdnen() throws FileNotFoundException {
-		// Besser als Try Catch da wir d??
+	public void readRegister() throws FileNotFoundException {
 		File myRegister = new File(path + "/register.txt");
 
 		Scanner fileScanner = new Scanner(myRegister);
@@ -66,7 +65,7 @@ public class ClassRegister {
 		String[] entryArray = sb.toString().split(";"); // teilt Register.txt
 														// in einzelne
 														// klassenbereiche
-
+	
 		if (entryArray.length % 3 == 1) { // Wenn Rest = 1 dann ist die Datei
 											// jeweils mit x einträgen à 3
 											// Blöcke befüllt.
@@ -75,11 +74,10 @@ public class ClassRegister {
 			for (int i = 0; i < entryArray.length - 1; i = i + 3) {
 
 				s = findReference(entryArray[i + 1].substring(0, 5));
-
-				s.addEintrag(new Entry(entryArray[i + 3], entryArray[i + 2],
-						entryArray[i + 1]));	
+				s.addEintrag(new Entry(entryArray[i + 3].trim(),
+						entryArray[i + 2], entryArray[i + 1]));
 				// Eintrag wird jeweiligem Schüler hinzugefügt
-				 
+
 			}
 
 		} else {
@@ -165,7 +163,6 @@ public class ClassRegister {
 	}
 
 	public void readTeacher() throws FileNotFoundException {
-		// Lehrer einlesen
 		String file = path + "/teacher.txt";
 		File myRegister = new File(file);
 		Scanner fileScanner;
