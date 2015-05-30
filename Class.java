@@ -23,9 +23,10 @@ public class Class {
 				allStudents[3].substring(0, 2), this.classID);
 		studentsArray.add(tmpStudent);
 
-		if (allStudents.length % 3 == 1) { // Prüfung ob der Array durch 3
-											// Teilbar ist und 1 übrig bleibt
-											// für die ID
+		if (allStudents.length % 3 == 1) { // Test if array is dividable by
+											// three and if there is a rest of
+											// one for the ID
+
 			for (int i = 1; i < allStudents.length; i = i + 3) {
 
 				Student s = new Student(allStudents[i], allStudents[i + 1],
