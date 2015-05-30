@@ -122,12 +122,14 @@ public class ClassRegisterTest {
 		testReadData();
 
 		// overwrite register.txt to leave it in original state
-		Scanner fileScanner = new Scanner(path + "register.txt.orig");
+		File inputFile = new File(path + "/register.txt.orig");
+		Scanner fileScanner = null;
 		PrintWriter out = null;
 		try {
+			fileScanner = new Scanner(inputFile);
 			out = new PrintWriter(path + "/register.txt");
 		} catch (IOException e) {
-			fail("Restoring default test data failed - for fourther testing reset register.txt");
+			fail("Restoring default test data failed - for fourther testing please reset register.txt manually");
 		}
 
 		while (fileScanner.hasNext()) {
