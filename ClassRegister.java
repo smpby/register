@@ -18,7 +18,7 @@ public class ClassRegister {
 	 */
 	public ClassRegister(String path) {
 		this.path = path;
-	}// HI
+	}
 
 	public void readStudents() throws FileNotFoundException {
 
@@ -74,7 +74,7 @@ public class ClassRegister {
 			for (int i = 0; i < entryArray.length - 1; i = i + 3) {
 
 				s = findReference(entryArray[i + 1].substring(0, 5));
-				s.addEintrag(new Entry(entryArray[i + 3].trim(),
+				s.addEntry(new Entry(entryArray[i + 3].trim(),
 						entryArray[i + 2], entryArray[i + 1]));
 				// Eintrag wird jeweiligem Schüler hinzugefügt
 
@@ -139,7 +139,7 @@ public class ClassRegister {
 
 		return k;
 	}
-
+/**
 	public void listClasses() { // Listet alle Klassen auf mit allen Schülern
 		for (int i = 0; i < classesArray.size(); i++) {
 			System.out.println("");
@@ -149,7 +149,7 @@ public class ClassRegister {
 			classesArray.get(i).listStudents();
 		}
 	}
-
+*/
 	public void listClassesWithEntrys() { // Listet alle Klassen mit entrys
 		for (int i = 0; i < classesArray.size(); i++) {
 			if (classesArray.get(i).areThereEntrys()) {

@@ -91,7 +91,7 @@ public class Class {
 
 		boolean b = false;
 		for (int i = 1; i < studentsArray.size(); i++) {
-			if (!studentsArray.get(i).checkEntrys()) {
+			if (!studentsArray.get(i).hasNoEntrys()) {
 				b = true;
 			}
 

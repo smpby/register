@@ -130,7 +130,7 @@ public class StartRegister {
 		String date = input("Fügen Sie bitte noch das Datum hinzu (Im Format: DD.MM.JJJJ)");
 		if (validDate(date)) {
 			tmpEntry = new Entry(info, date, tmpStudent.geteindeutigeID());
-			tmpStudent.addEintrag(tmpEntry);
+			tmpStudent.addEntry(tmpEntry);
 		} else {
 			stackEntryArray();
 		}

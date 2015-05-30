@@ -22,30 +22,16 @@ public class Student {
 		eindeutigeID = sg.toString();
 	}
 
-	public void addEintrag(Entry e) {
+	public void addEntry(Entry e) {
 		if (!e.getNotiz().isEmpty()) {
 			// throw away empty entrys
 			if (eintraege.size() == 0) {
 				// in the case of no entrys: add entry
 				this.eintraege.add(e);
 			} else {
-				boolean tmpflag = false;
-
-				for (int i = 0; i < eintraege.size(); i++) {
-
-					if (this.eintraege.get(i).getDatum()
-							.contentEquals(e.getDatum())
-							&& this.eintraege.get(i).getNotiz()
-									.contentEquals(e.getNotiz())) {
-						// remember if entry exists already
-						tmpflag = true;
-					}
-
-				}
-				if (!tmpflag) {
-					// only add nonexisting entrys
+				if (!findEntry(e))
+					// entry was not found
 					this.eintraege.add(e);
-				}
 			}
 		}
 	}
@@ -61,7 +47,8 @@ public class Student {
 	public String getID() {
 		return ID;
 	}
-	public Entry getEntry(int i){
+
+	public Entry getEntry(int i) {
 		return eintraege.get(i);
 	}
 
@@ -89,7 +76,7 @@ public class Student {
 		return eindeutigeID;
 	}
 
-	public boolean checkEntrys() {// checks if there are any entrys for this
+	public boolean hasNoEntrys() {// checks if there are any entrys for this
 									// student
 		return eintraege.isEmpty();
 	}
@@ -100,5 +87,26 @@ public class Student {
 
 	public String returnEntry(int i) {
 		return eintraege.get(i).toString();
+	}
+
+	/**
+	 * Search method for Entrys for one Student
+	 * 
+	 * @param toSearch
+	 *            is the Entry to which the identical sibling should be found
+	 * @return true if toSearch was found as Entry (with identical date and
+	 *         information)
+	 */
+	public boolean findEntry(Entry toSearch) {
+		for (int i = 0; i < eintraege.size(); i++) {
+			if (this.eintraege.get(i).getDatum()
+					.contentEquals(toSearch.getDatum())
+					&& this.eintraege.get(i).getNotiz()
+							.contentEquals(toSearch.getNotiz())) {
+				return true;
+			}
+
+		}
+		return false;
 	}
 }
