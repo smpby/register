@@ -7,10 +7,20 @@ public class Class {
 	private String classID;
 	private ArrayList<Student> studentsArray = new ArrayList<Student>();
 
+	/**
+	 * Constructor number 1. Constructs class with classID from param.
+	 * @param ID Is the ID for the class.
+	 */
 	public Class(String ID) {
 		classID = ID;
 	}
 
+	/**
+	 * Constructor number 2. Constructs class with classID and all the students
+	 * from param c from those studentsArray.
+	 * 
+	 * @param c The class to be copied. 
+	 */
 	public Class(Class c) {
 		this.classID = c.classID;
 		this.studentsArray = c.studentsArray;
