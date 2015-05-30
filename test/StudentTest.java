@@ -1,3 +1,9 @@
+/**
+ * @author Simon Bayer 
+ * @author Patrice Bender 
+ * @author Vera Gögelein 9267625
+ * @author Robert Leipelt 9469264
+ */
 package de.dhbw.vs.fpr.register.test;
 
 import static org.junit.Assert.*;

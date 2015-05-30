@@ -1,3 +1,9 @@
+/**
+ * @author Simon Bayer 
+ * @author Patrice Bender 
+ * @author Vera Gögelein 9267625
+ * @author Robert Leipelt 9469264
+ */
 package de.dhbw.vs.fpr.register;
 
 import java.util.ArrayList;
@@ -9,7 +15,9 @@ public class Class {
 
 	/**
 	 * Constructor number 1. Constructs class with classID from param.
-	 * @param ID Is the ID for the class.
+	 * 
+	 * @param ID
+	 *            Is the ID for the class.
 	 */
 	public Class(String ID) {
 		classID = ID;
@@ -19,13 +27,21 @@ public class Class {
 	 * Constructor number 2. Constructs class with classID and all the students
 	 * from param c from those studentsArray.
 	 * 
-	 * @param c The class to be copied. 
+	 * @param c
+	 *            The class to be copied.
 	 */
 	public Class(Class c) {
 		this.classID = c.classID;
 		this.studentsArray = c.studentsArray;
 	}
 
+	/**
+	 * Creates a class with Students of the pupillist. If the dataset ist
+	 * incomplete there will be an error message.
+	 * 
+	 * @param pupilList
+	 *            Students of the class.
+	 */
 	public void createClass(String pupilList) {
 		String allStudents[] = pupilList.substring(3).split(";");
 
@@ -41,9 +57,10 @@ public class Class {
 
 				Student s = new Student(allStudents[i], allStudents[i + 1],
 						allStudents[i + 2].substring(0, 2), this.classID);
-				// Schueler wird erzeugt, Array Index 0 ist für die ID
-				// Reserviert, danach sind immer 3 nachfolgende ArrayPlätze
-				// mit Name, Vorname und Schüler ID
+				// Student is created, Index 0 of the array is reserved for the
+				// ID, afterwards are always 3 arrayplaces with name, first name
+				// and student ID
+
 				studentsArray.add(s);
 
 			}
@@ -53,17 +70,34 @@ public class Class {
 
 	}
 
+	/**
+	 * Adds the studentarray to one student.
+	 * 
+	 * @param s
+	 *            S is added to a student.
+	 */
 	public void addStudent(Student s) {
 		studentsArray.add(s);
 	}
 
+	/**
+	 * Gets the ID from a class.
+	 * 
+	 * @return The classID
+	 */
 	public String getID() {
 		return this.classID;
 	}
 
-	public Student findStudent(String ID) { // Prüft ob ID aus
-											// Register.txt mit der eines
-											// Schuelers übereinstimmt
+	/**
+	 * Checks if the ID form Register.txt is the same as the ID from one
+	 * student.
+	 * 
+	 * @param ID
+	 *            ID from one student.
+	 * @return Student s.
+	 */
+	public Student findStudent(String ID) {
 
 		Student s = null;
 
@@ -76,17 +110,22 @@ public class Class {
 		return s;
 	}
 
-	public void listEntrysOfStudents() { // listet alle eintraege aller Schüler
+	/**
+	 * Lists entries of all the students and prints them on the console.
+	 */
+	public void listEntrysOfStudents() {
 		for (int i = 1; i < studentsArray.size(); i++) {
 			studentsArray.get(i).getEntrys();
 			System.out.println("Einträge ausgegeben");
 		}
 	}
 
-	public void listStudents() throws NullPointerException { // Listet alle
-																// Studenten
-																// einer Klasse
-																// auf
+	/**
+	 * Lists all students of one class and prints them on the console.
+	 * 
+	 * @throws NullPointerException //was macht hier die NullPointerException?
+	 */
+	public void listStudents() throws NullPointerException {
 		for (int i = 1; i < studentsArray.size(); i++) {
 
 			System.out.println("Schüler " + studentsArray.get(i).getID() + " "
@@ -95,11 +134,11 @@ public class Class {
 
 		}
 	}
-
-	public boolean areThereEntrys() {// prüft ob min 1 Schüler min 1
-										// eintrag hat, gibt False zurück
-										// wenn es keine Eintraege gibt
-
+/**
+ * Checks if at least there is one student with minimum one entry.
+ * @return true or false
+ */
+	public boolean areThereEntrys() {
 		boolean b = false;
 		for (int i = 1; i < studentsArray.size(); i++) {
 			if (!studentsArray.get(i).hasNoEntrys()) {
@@ -109,12 +148,19 @@ public class Class {
 		}
 		return b;
 	}
-
+/**
+ * Gets information of one student.
+ * @param i 
+ * @return Information of one student i.
+ */
 	public Student arrayInfo(int i) {
 
 		return studentsArray.get(i);
 	}
-
+/**
+ * Gives information how many students are in the studentsArray.
+ * @return The size of the studentsArray.
+ */
 	public int sizeInfo() {
 		return studentsArray.size();
 	}
