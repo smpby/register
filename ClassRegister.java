@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class ClassRegister {
 
 	private String path;
-	ArrayList<Class> classesArray = new ArrayList<Class>();
-	ArrayList<Teacher> teacherArray = new ArrayList<Teacher>();
+	ArrayList<Class> classesArray = new ArrayList<>();
+	ArrayList<Teacher> teacherArray = new ArrayList<>();
 
 	/**
 	 * This constructor is ok because there is no need to change the path to the
@@ -33,7 +33,7 @@ public class ClassRegister {
 		while (fileScanner.hasNextLine()) {
 			s = fileScanner.nextLine();
 			// System.out.println(s);
-			sb.append(s + "\n");
+			sb.append(s).append("\n");
 
 		}
 		// String der Textdatei wird im Array helper nach Klassen aufgeteilt
@@ -59,7 +59,7 @@ public class ClassRegister {
 
 		while (fileScanner.hasNextLine()) {// Hallo
 
-			sb.append(fileScanner.nextLine() + "\n");
+			sb.append(fileScanner.nextLine()).append("\n");
 
 		}
 		String[] entryArray = sb.toString().split(";"); // teilt Register.txt
@@ -85,6 +85,12 @@ public class ClassRegister {
 		}
 
 	}
+	
+	/**
+     *
+     * @param searchID
+     * @return
+     */
 
 	public Student findReference(String searchID) {
 
@@ -119,13 +125,18 @@ public class ClassRegister {
 		return s;
 
 	}
-
+	
+	/**
+	 *
+	 * @param ID
+	 * @return
+	 */
+	
 	public Class findClass(String ID) {
 		Class k = null;
 
-		for (int i = 0; i < classesArray.size(); i++) {
-
-			if (classesArray.get(i).getID().equals(ID)) { // Wenn ID mit
+		for (Class classesArray1 : classesArray) {
+                if (classesArray1.getID().equals(ID)) { // Wenn ID mit
 															// KlassenID
 															// übereinstimmt
 															// soll
@@ -151,16 +162,19 @@ public class ClassRegister {
 	}
 */
 	public void listClassesWithEntrys() { // Listet alle Klassen mit entrys
-		for (int i = 0; i < classesArray.size(); i++) {
-			if (classesArray.get(i).areThereEntrys()) {
-				System.out.println("Klasse " + classesArray.get(i).getID()
-						+ " hat Einträge");
-			} else {
-				System.out.println("Klasse " + classesArray.get(i).getID()
-						+ " hat keine Einträge");
-			}
-		}
+		classesArray.stream().forEach((classesArray1) -> {
+                if (classesArray1.areThereEntrys()) {
+                    System.out.println("Klasse " + classesArray1.getID() + " hat Einträge");
+                } else {
+                    System.out.println("Klasse " + classesArray1.getID() + " hat keine Einträge");
+                }
+            });
 	}
+	
+	/**
+	 *
+	 * @throws FileNotFoundException
+	 */
 
 	public void readTeacher() throws FileNotFoundException {
 		String file = path + "/teacher.txt";
@@ -172,7 +186,7 @@ public class ClassRegister {
 
 		while (fileScanner.hasNextLine()) {
 
-			sb.append(fileScanner.nextLine() + "\n");
+			sb.append(fileScanner.nextLine()).append("\n");
 
 		}
 		String stringcopy[] = sb.toString().split(";"); // teilt
@@ -196,28 +210,35 @@ public class ClassRegister {
 		}
 
 	}
+	
+	/**
+	 *
+	 * @param eindeutigeID
+	 */
 
 	public void showEntryforOneStudent(String eindeutigeID) {
 		findReference(eindeutigeID).getEntrys();
 	}
+	
+	/**
+	 *
+	 * @throws FileNotFoundException
+	 */
 
 	public void writeEntries() throws FileNotFoundException {
 
-		PrintWriter out = new PrintWriter(path + "/register.txt");
-
-		for (int i = 0; i < classesArray.size(); i++) {
-
-			for (int j = 0; j < classesArray.get(i).sizeInfo(); j++) {
-
-				for (int k = 0; k < classesArray.get(i).arrayInfo(j)
-						.getEntrySize(); k++) {
-					out.println(classesArray.get(i).arrayInfo(j).returnEntry(k));
-				}
-			}
-		}
-		out.close();
+		try (PrintWriter out = new PrintWriter(path + "/register.txt")) {
+                classesArray.stream().forEach((classesArray1) -> {
+                    for (int j = 0; j < classesArray1.sizeInfo(); j++) {
+                        for (int k = 0; k < classesArray1.arrayInfo(j).getEntrySize(); k++) {
+                            out.println(classesArray1.arrayInfo(j).returnEntry(k));
+                        }
+                    }
+                });
 	}
-
+		
+}
+	
 	void printTeachers() {
 		System.out.println(teacherArray.toString());
 	}
@@ -230,9 +251,9 @@ public class ClassRegister {
 	 * @return true for fitting username Password combination - else false
 	 */
 	boolean authenticate(String userName, String passWord) {
-		for (int i = 0; i < teacherArray.size(); i++) {
-			if (teacherArray.get(i).getUserName().equals(userName)) {
-				return teacherArray.get(i).getPassWord().equals(passWord);
+		for (Teacher teacherArray1 : teacherArray) {
+                if (teacherArray1.getUserName().equals(userName)) {
+                    return teacherArray1.getPassWord().equals(passWord);
 			}
 		}
 		return false;
@@ -243,7 +264,7 @@ public class ClassRegister {
 		System.out
 				.println("Bitte wählen sie eine Klasse aus oder gehen Sie zu der Authentifizierung mit R zurück:");
 		String chosenClass = sc.nextLine();
-		if (chosenClass == "R") {
+		if ("R".equals(chosenClass)) {
 			return null; // no Class was choosen (and R was pressed) --> return
 							// to authentication
 		}
