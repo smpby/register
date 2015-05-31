@@ -1,0 +1,183 @@
+package de.dhbw.vs.fpr.register;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+  * @author Simon Bayer 
+  * @author Patrice Bender 
+  * @author Vera Gögelein 9267625
+  * @author Robert Leipelt 9469264
+  */
+  
+public class ClassRegisterTest {
+    
+    public ClassRegisterTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of readStudents method, of class ClassRegister.
+     */
+    @Test
+    public void testReadStudents() throws Exception {
+        System.out.println("readStudents");
+        ClassRegister instance = null;
+        instance.readStudents();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of readRegister method, of class ClassRegister.
+     */
+    @Test
+    public void testReadRegister() throws Exception {
+        System.out.println("readRegister");
+        ClassRegister instance = null;
+        instance.readRegister();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of findReference method, of class ClassRegister.
+     */
+    @Test
+    public void testFindReference() {
+        System.out.println("findReference");
+        String searchID = "";
+        ClassRegister instance = null;
+        Student expResult = null;
+        Student result = instance.findReference(searchID);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of findClass method, of class ClassRegister.
+     */
+    @Test
+    public void testFindClass() {
+        System.out.println("findClass");
+        String ID = "";
+        ClassRegister instance = null;
+        Class expResult = null;
+        Class result = instance.findClass(ID);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of listClassesWithEntrys method, of class ClassRegister.
+     */
+    @Test
+    public void testListClassesWithEntrys() {
+        System.out.println("listClassesWithEntrys");
+        ClassRegister instance = null;
+        instance.listClassesWithEntrys();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of readTeacher method, of class ClassRegister.
+     */
+    @Test
+    public void testReadTeacher() throws Exception {
+        System.out.println("readTeacher");
+        ClassRegister instance = null;
+        instance.readTeacher();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of showEntryforOneStudent method, of class ClassRegister.
+     */
+    @Test
+    public void testShowEntryforOneStudent() {
+        System.out.println("showEntryforOneStudent");
+        String eindeutigeID = "";
+        ClassRegister instance = null;
+        instance.showEntryforOneStudent(eindeutigeID);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of writeEntries method, of class ClassRegister.
+     */
+    @Test
+    public void testWriteEntries() throws Exception {
+        System.out.println("writeEntries");
+        ClassRegister instance = null;
+        instance.writeEntries();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of printTeachers method, of class ClassRegister.
+     */
+    @Test
+    public void testPrintTeachers() {
+        System.out.println("printTeachers");
+        ClassRegister instance = null;
+        instance.printTeachers();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of authenticate method, of class ClassRegister.
+     */
+    @Test
+    public void testAuthenticate() {
+        System.out.println("authenticate");
+        String userName = "";
+        String passWord = "";
+        ClassRegister instance = null;
+        boolean expResult = false;
+        boolean result = instance.authenticate(userName, passWord);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of chooseClass method, of class ClassRegister.
+     */
+    @Test
+    public void testChooseClass() {
+        System.out.println("chooseClass");
+        ClassRegister instance = null;
+        Class expResult = null;
+        Class result = instance.chooseClass();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
+}
