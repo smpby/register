@@ -1,17 +1,18 @@
+package de.dhbw.vs.fpr.register;
+
+import java.util.ArrayList;
+
 /**
  * @author Simon Bayer 
  * @author Patrice Bender 
  * @author Vera Gögelein 9267625
  * @author Robert Leipelt 9469264
  */
-package de.dhbw.vs.fpr.register;
-
-import java.util.ArrayList;
 
 public class Class {
 
-	private String classID;
-	private ArrayList<Student> studentsArray = new ArrayList<Student>();
+	private final String classID;
+	private ArrayList<Student> studentsArray = new ArrayList<>();
 
 	/**
 	 * Constructor number 1. Constructs class with classID from param.
@@ -42,6 +43,7 @@ public class Class {
 	 * @param pupilList
 	 *            Students of the class.
 	 */
+	 
 	public void createClass(String pupilList) {
 		String allStudents[] = pupilList.substring(3).split(";");
 
@@ -49,10 +51,13 @@ public class Class {
 				allStudents[3].substring(0, 2), this.classID);
 		studentsArray.add(tmpStudent);
 
-		if (allStudents.length % 3 == 1) { // Test if array is dividable by
-											// three and if there is a rest of
-											// one for the ID
-
+		if (allStudents.length % 3 == 1) { 
+		
+		/**
+		* Test if array is dividable by three and if there is a rest 
+		* of one for the ID 
+		*/
+		
 			for (int i = 1; i < allStudents.length; i = i + 3) {
 
 				Student s = new Student(allStudents[i], allStudents[i + 1],
@@ -76,6 +81,7 @@ public class Class {
 	 * @param s
 	 *            S is added to a student.
 	 */
+	 
 	public void addStudent(Student s) {
 		studentsArray.add(s);
 	}
@@ -97,13 +103,14 @@ public class Class {
 	 *            ID from one student.
 	 * @return Student s.
 	 */
+	 
 	public Student findStudent(String ID) {
 
 		Student s = null;
 
-		for (int i = 0; i < studentsArray.size(); i++) {
-			if (studentsArray.get(i).getID().equals(ID)) {
-				s = studentsArray.get(i);
+		for (Student studentsArray1 : studentsArray) {
+                if (studentsArray1.getID().equals(ID)) {
+                    s = studentsArray1;
 			}
 		}
 
@@ -125,6 +132,7 @@ public class Class {
 	 * 
 	 * @throws NullPointerException //was macht hier die NullPointerException?
 	 */
+	 
 	public void listStudents() throws NullPointerException {
 		for (int i = 1; i < studentsArray.size(); i++) {
 
