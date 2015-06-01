@@ -17,13 +17,22 @@ import de.dhbw.vs.fpr.register.ClassRegister;
 import de.dhbw.vs.fpr.register.Entry;
 
 /**
+ * @author Simon Bayer 5601000
+ * @author Patrice Bender 117684
+ * @author Vera Gögelein 9267625
+ * @author Robert Leipelt 9469264
+ */
+
+/**
  * To run this test use -Dpath=<pathToTheTestData> as parameter to the [J]VM
- * @author simon 
+ * 
+ * @author simon
  *
  */
 public class ClassRegisterTest {
-	
- String path ;//= "/home/simon/workspace/Prog_funk/projectclassregister/src/de/dhbw/vs/fpr/register/testdata";
+
+	String path;// =
+				// "/home/simon/workspace/Prog_funk/projectclassregister/src/de/dhbw/vs/fpr/register/testdata";
 	;
 	ClassRegister c;
 	String testClassID;
@@ -31,27 +40,27 @@ public class ClassRegisterTest {
 	String testInfo;
 	String testDate;
 	Entry testEntry;
-	
-	
+
 	@Before
-    public void setUp() {
-        // Set up for the test, manipulating instance variables and Read Data
+	public void setUp() {
+		// Set up for the test, manipulating instance variables and Read Data
 		testClassID = "012";
 		testStudentID = "11";
 		testInfo = "stört unterricht NICHT";
 		testDate = "12.11.1111";
 		testEntry = new Entry(testInfo, testDate, testClassID + testStudentID);
-		path=System.getProperty("path");
+		path = System.getProperty("path");
 		assertNotNull("path variable wasn't send to JVM", path);
 		testReadData();
-    }
+	}
+
 	/**
 	 * this test method is not only testing if the dataset reading works, it
 	 * also is used to initialize the datastructures for the other tests
 	 */
 	@Test
 	public void testReadData() {
-		
+
 		c = new ClassRegister(path);
 		try {
 			c.readStudents();
@@ -103,8 +112,6 @@ public class ClassRegisterTest {
 	@Test
 	public void testMakeEntry() {
 
-		
-
 		// Check for existing Class and Student
 		assertNotNull(c.findClass(testClassID));
 		assertNotNull(c.findClass(testClassID).findStudent(testStudentID));
@@ -121,7 +128,7 @@ public class ClassRegisterTest {
 				.findEntry(testEntry));
 
 		// No saving of the newly added Entry
-		
+
 	}
 
 	@Test

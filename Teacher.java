@@ -1,5 +1,11 @@
 package de.dhbw.vs.fpr.register;
 
+/**
+ * @author Simon Bayer 5601000
+ * @author Patrice Bender 117684
+ * @author Vera Gögelein 9267625
+ * @author Robert Leipelt 9469264
+ */
 public class Teacher {
 	private String ID;
 	private String firstName;
@@ -47,7 +53,7 @@ public class Teacher {
 		this.passWord = passWord;
 	}
 
-	Teacher( String firstName, String lastName,String Id, String userName,
+	Teacher(String firstName, String lastName, String Id, String userName,
 			String passWord) {
 		setID(Id);
 		setFirstName(firstName);
@@ -55,9 +61,11 @@ public class Teacher {
 		setUserName(userName);
 		setPassWord(passWord);
 	}
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return ";"+getFirstName()+";"+getLastName()+";"+getID()+";"+getUserName()+";"+getPassWord();
+		return ";" + getFirstName() + ";" + getLastName() + ";" + getID() + ";"
+				+ getUserName() + ";" + getPassWord();
 	}
 }

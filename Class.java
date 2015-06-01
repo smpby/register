@@ -3,8 +3,10 @@ package de.dhbw.vs.fpr.register;
 import java.util.ArrayList;
 
 /**
+ * Class for one class of students.
+ * 
  * @author Simon Bayer 5601000
- * @author Patrice Bender 
+ * @author Patrice Bender 117684
  * @author Vera Gögelein 9267625
  * @author Robert Leipelt 9469264
  */
@@ -37,13 +39,13 @@ public class Class {
 	}
 
 	/**
-	 * Creates a class with Students of the pupillist. If the dataset ist
-	 * incomplete there will be an error message.
+	 * Creates a class with Students of the studentsList. If the dataset is
+	 * incomplete, there will be an error message.
 	 * 
 	 * @param studentList
 	 *            Students of the class.
 	 */
-	 
+
 	public void createClass(String studentList) {
 		String allStudents[] = studentList.substring(3).split(";");
 
@@ -51,13 +53,13 @@ public class Class {
 				allStudents[3].substring(0, 2), this.classID);
 		studentsArray.add(tmpStudent);
 
-		if (allStudents.length % 3 == 1) { 
-		
 		/**
-		* Test if array is dividable by three and if there is a rest 
-		* of one for the ID 
-		*/
-		
+		 * Test if array is divisible by three and if there is a rest of one for
+		 * the ID
+		 */
+		// Ich hab keine Ahnung ob das hier javadoc korrekt ausführt.
+		if (allStudents.length % 3 == 1) {
+
 			for (int i = 1; i < allStudents.length; i = i + 3) {
 
 				Student s = new Student(allStudents[i], allStudents[i + 1],
@@ -76,12 +78,12 @@ public class Class {
 	}
 
 	/**
-	 * Adds the studentarray to one student.
+	 * Adds the studentsArray to one student.
 	 * 
 	 * @param s
 	 *            S is added to a student.
 	 */
-	 
+
 	public void addStudent(Student s) {
 		studentsArray.add(s);
 	}
@@ -103,14 +105,14 @@ public class Class {
 	 *            ID from one student.
 	 * @return Student s if the student was found, else returns null.
 	 */
-	 
+
 	public Student findStudent(String ID) {
 
 		Student s = null;
 
 		for (Student studentsArray1 : studentsArray) {
-                if (studentsArray1.getID().equals(ID)) {
-                    s = studentsArray1;
+			if (studentsArray1.getID().equals(ID)) {
+				s = studentsArray1;
 			}
 		}
 
@@ -129,9 +131,7 @@ public class Class {
 
 	/**
 	 * Lists all students of one class and prints them on the console.
-	 * 
 	 */
-	 
 	public void listStudents() {
 		for (int i = 1; i < studentsArray.size(); i++) {
 
@@ -141,10 +141,12 @@ public class Class {
 
 		}
 	}
-/**
- * Checks if at least there is one student with minimum one entry.
- * @return true or false
- */
+
+	/**
+	 * Checks if at least there is one student with minimum one entry.
+	 * 
+	 * @return true or false, when there are entries or not.
+	 */
 	public boolean areThereEntrys() {
 		boolean b = false;
 		for (int i = 1; i < studentsArray.size(); i++) {
@@ -155,19 +157,23 @@ public class Class {
 		}
 		return b;
 	}
-/**
- * Gets one student on position i.
- * @param i 
- * @return Information of one student i.
- */
+
+	/**
+	 * Gets one student on position i.
+	 * 
+	 * @param i
+	 * @return Information of one student on position i.
+	 */
 	public Student arrayInfo(int i) {
 
 		return studentsArray.get(i);
 	}
-/**
- * Gives information how many students are in the studentsArray.
- * @return The size of the studentsArray.
- */
+
+	/**
+	 * Gives information how many students are in the studentsArray.
+	 * 
+	 * @return The size of the studentsArray.
+	 */
 	public int sizeInfo() {
 		return studentsArray.size();
 	}

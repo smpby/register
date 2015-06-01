@@ -2,6 +2,13 @@ package de.dhbw.vs.fpr.register;
 
 import java.util.ArrayList;
 
+/**
+ * @author Simon Bayer 5601000
+ * @author Patrice Bender 117684
+ * @author Vera Gögelein 9267625
+ * @author Robert Leipelt 9469264
+ */
+
 public class Student {
 
 	private String name = new String();

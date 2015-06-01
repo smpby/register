@@ -1,15 +1,18 @@
-/**
- * @author Simon Bayer 5601000
- * @author Patrice Bender 
- * @author Vera Gögelein 9267625
- * @author Robert Leipelt 9469264
- */
 package de.dhbw.vs.fpr.register;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
+
+/**
+ * Class StartRegister to start the programm.
+ * 
+ * @author Simon Bayer 5601000
+ * @author Patrice Bender 117684
+ * @author Vera Gögelein 9267625
+ * @author Robert Leipelt 9469264
+ */
 
 public class StartRegister {
 
@@ -19,6 +22,9 @@ public class StartRegister {
 	static Student tmpStudent;
 	static Entry tmpEntry;
 
+	/**
+	 * The main method is where the text files are read.
+	 */
 	public static void main(String[] args) {
 
 		k1 = new ClassRegister(args[0]);
@@ -30,14 +36,15 @@ public class StartRegister {
 			stageZero();
 
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
 
 	}
 
 	/**
-	 * Scanner Objekt als Methode ist Praktischer als immer zu Tippen
+	 * Create of an scanner object as an method, because it's more practicable.
+	 * Creates an scanner object.
 	 */
 	public static String input(String text) {
 		System.out.println(text);
@@ -46,6 +53,13 @@ public class StartRegister {
 		return s.nextLine();
 	}
 
+	/**
+	 * Authentication of one user with his/her user name and the password. User
+	 * can quit the program by pressing Q.
+	 * 
+	 * @throws FileNotFoundException
+	 *             When there is no belonging text file.
+	 */
 	public static void stageZero() throws FileNotFoundException {
 		boolean notauthenticated = true;
 		while (notauthenticated) {
@@ -57,11 +71,21 @@ public class StartRegister {
 
 			String passWord = input("Bitte geben Sie jetzt Ihr Password ein (Eingabefeld nicht verdeckt):");
 			notauthenticated = !k1.authenticate(userName, passWord);
-		}// Do as long aus authentification failed
+		}// Do as long as authentication failed
 
 		stageOne();
 	}
 
+	/**
+	 * User can choose the class, by giving the ID of the class. User can go one
+	 * step backwards, by pressing R.
+	 * 
+	 * @throws NullPointerException
+	 *             if the ID is 0.
+	 * 
+	 * @throws FileNotFoundException
+	 *             When there is no belonging text file.
+	 */
 	public static void stageOne() throws NullPointerException,
 			FileNotFoundException {
 		k1.listClassesWithEntrys();
@@ -85,6 +109,15 @@ public class StartRegister {
 		stageTwo();
 	}
 
+	/**
+	 * User can choose one student, by giving the ID of them. User can go one
+	 * step backwards, by pressing R.
+	 * 
+	 * @throws NullPointerException
+	 *             if the ID is 0.
+	 * @throws FileNotFoundException
+	 *             When there is no belonging text file.
+	 */
 	public static void stageTwo() throws NullPointerException,
 			FileNotFoundException {
 		tmpClass.listStudents();
@@ -108,6 +141,16 @@ public class StartRegister {
 		stageThree();
 	}
 
+	/**
+	 * User can choose between "Einträge anzeigen" by pressing 1,
+	 * "Neuen Eintrag erstellen" by pressing 2 and
+	 * "Zur Schülerwahl zurückkehren" by pressing R.
+	 * 
+	 * @throws NullPointerException
+	 *             if the input is 0.
+	 * @throws FileNotFoundException
+	 *             When there is no belonging text file.
+	 */
 	public static void stageThree() throws NullPointerException,
 			FileNotFoundException {
 		String in = input("Einträge anzeigen = 1 || Neuen Eintrag erstellen = 2 || Zur Schülerwahl zurückkehren = R");
@@ -131,6 +174,11 @@ public class StartRegister {
 
 	}
 
+	/**
+	 * User can create an entry of one student into the digital class register.
+	 * User have to write what the student did during the lesson and the
+	 * belonging date of the day.
+	 */
 	public static void stackEntryArray() {
 		String info = input("Was hat der Schüler verbrochen?");
 		String date = input("Fügen Sie bitte noch das Datum hinzu (Im Format: DD.MM.JJJJ)");
@@ -143,13 +191,22 @@ public class StartRegister {
 
 	}
 
+	/**
+	 * Checks if there is one date giving and if this is in the right format
+	 * 
+	 * @param date
+	 *            Is the date of one entry.
+	 * @return false, if there was no date giving by the user and/or it's in the
+	 *         wrong format.
+	 * @return true, if there is a date giving in the right format.
+	 */
 	public static boolean validDate(String date) {
 		if (date == null) {
-			// no input was given
+			// no input date was given by the user
 			return false;
 		}
 		SimpleDateFormat s = new SimpleDateFormat("dd.mm.yyyy");
-		s.setLenient(false);// strict match is requiered
+		s.setLenient(false);// strict match is required
 		try {
 			s.parse(date);
 		} catch (ParseException e) {

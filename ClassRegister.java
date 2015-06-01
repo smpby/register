@@ -6,6 +6,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class ClassRegister to write new entries.
+ * 
+ * @author Simon Bayer 5601000
+ * @author Patrice Bender 117684
+ * @author Vera Gögelein 9267625
+ * @author Robert Leipelt 9469264
+ */
 public class ClassRegister {
 
 	private String path;
@@ -13,13 +21,19 @@ public class ClassRegister {
 	ArrayList<Teacher> teacherArray = new ArrayList<Teacher>();
 
 	/**
-	 * This constructor is ok because there is no need to change the path to the
-	 * datasets dynamically!
+	 * Constructor of ClassRegister. It's ok, because there is no need to change
+	 * the path of the datasets dynamically.
 	 */
 	public ClassRegister(String path) {
 		this.path = path;
 	}
 
+	/**
+	 * Text file student.txt is read in.
+	 * 
+	 * @throws FileNotFoundException
+	 *             When the text file student.txt is not found.
+	 */
 	public void readStudents() throws FileNotFoundException {
 
 		StringBuilder sb = new StringBuilder();
@@ -32,18 +46,17 @@ public class ClassRegister {
 
 		while (fileScanner.hasNextLine()) {
 			s = fileScanner.nextLine();
-			// System.out.println(s);
 			sb.append(s + "\n");
 
 		}
-		// String der Textdatei wird im Array helper nach Klassen aufgeteilt
+		// String from the text file will be divided into classes in the array
+		// helper
 		String[] helper = sb.toString().split("<class>");
 
-		// es werden Klassenobjekte erzeugt die die Klassenlisten speichern
-
+		// Creating of classobjects, to save classlists.
 		for (int i = 1; i < helper.length; i++) {
 			Class k = new Class(helper[i].substring(0, 3));
-			// Holt ID der Klassen aus Textdatei
+		//Brings ID's of the classes from the text file 
 
 			k.createClass(helper[i]);
 			classesArray.add(k);
@@ -65,7 +78,7 @@ public class ClassRegister {
 		String[] entryArray = sb.toString().split(";"); // teilt Register.txt
 														// in einzelne
 														// klassenbereiche
-	
+
 		if (entryArray.length % 3 == 1) { // Wenn Rest = 1 dann ist die Datei
 											// jeweils mit x einträgen à 3
 											// Blöcke befüllt.
@@ -139,17 +152,14 @@ public class ClassRegister {
 
 		return k;
 	}
-/**
-	public void listClasses() { // Listet alle Klassen auf mit allen Schülern
-		for (int i = 0; i < classesArray.size(); i++) {
-			System.out.println("");
-			System.out.println("_______Klasse " + classesArray.get(i).getID()
-					+ " beginnt______");
-			System.out.println("");
-			classesArray.get(i).listStudents();
-		}
-	}
-*/
+
+	/**
+	 * public void listClasses() { // Listet alle Klassen auf mit allen Schülern
+	 * for (int i = 0; i < classesArray.size(); i++) { System.out.println("");
+	 * System.out.println("_______Klasse " + classesArray.get(i).getID() +
+	 * " beginnt______"); System.out.println("");
+	 * classesArray.get(i).listStudents(); } }
+	 */
 	public void listClassesWithEntrys() { // Listet alle Klassen mit entrys
 		for (int i = 0; i < classesArray.size(); i++) {
 			if (classesArray.get(i).areThereEntrys()) {
