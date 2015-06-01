@@ -40,12 +40,12 @@ public class Class {
 	 * Creates a class with Students of the pupillist. If the dataset ist
 	 * incomplete there will be an error message.
 	 * 
-	 * @param pupilList
+	 * @param studentList
 	 *            Students of the class.
 	 */
 	 
-	public void createClass(String pupilList) {
-		String allStudents[] = pupilList.substring(3).split(";");
+	public void createClass(String studentList) {
+		String allStudents[] = studentList.substring(3).split(";");
 
 		Student tmpStudent = new Student(allStudents[1], allStudents[2],
 				allStudents[3].substring(0, 2), this.classID);
@@ -101,7 +101,7 @@ public class Class {
 	 * 
 	 * @param ID
 	 *            ID from one student.
-	 * @return Student s.
+	 * @return Student s if the student was found, else returns null.
 	 */
 	 
 	public Student findStudent(String ID) {
@@ -130,10 +130,9 @@ public class Class {
 	/**
 	 * Lists all students of one class and prints them on the console.
 	 * 
-	 * @throws NullPointerException //was macht hier die NullPointerException?
 	 */
 	 
-	public void listStudents() throws NullPointerException {
+	public void listStudents() {
 		for (int i = 1; i < studentsArray.size(); i++) {
 
 			System.out.println("Schüler " + studentsArray.get(i).getID() + " "
@@ -157,7 +156,7 @@ public class Class {
 		return b;
 	}
 /**
- * Gets information of one student.
+ * Gets one student on position i.
  * @param i 
  * @return Information of one student i.
  */

@@ -90,7 +90,7 @@ public class Student {
 	}
 
 	/**
-	 * Search method for Entrys for one Student
+	 * Search method for Entries for one Student
 	 * 
 	 * @param toSearch
 	 *            is the Entry to which the identical sibling should be found
