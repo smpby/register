@@ -3,6 +3,8 @@ package de.dhbw.vs.fpr.register;
 import java.util.ArrayList;
 
 /**
+ * Class to create one student.
+ * 
  * @author Simon Bayer 5601000
  * @author Patrice Bender 117684
  * @author Vera Gögelein 9267625
@@ -14,101 +16,159 @@ public class Student {
 	private String name = new String();
 	private String vorname = new String();
 
-	private ArrayList<Entry> eintraege = new ArrayList<Entry>();
-	private String eindeutigeID;
+	private ArrayList<Entry> entries = new ArrayList<Entry>();
+	private String explicitID;
 	private String ID;
 
+	/**
+	 * Constructor constructs student with first name, name, ID and class ID
+	 * from param.
+	 * 
+	 * @param firstName
+	 *            of one student.
+	 * @param name
+	 *            of one student.
+	 * @param ID
+	 *            of one student.
+	 * @param klassenID
+	 *            of one student.
+	 */
 	public Student(String firstName, String name, String ID, String klassenID) {
 		this.name = name;
 		vorname = firstName;
 		this.ID = ID;
 		StringBuilder sg = new StringBuilder();
 		sg.append(klassenID);
-		sg.append(this.ID); // Hier wird die eindeutige ID aus KlassenID und
-							// Schüler ID zusammengesetzt
-		eindeutigeID = sg.toString();
+		sg.append(this.ID); // Building of the explicit ID of class ID and
+							// students ID
+		explicitID = sg.toString();
 	}
 
+	/**
+	 * Adding of one entry to ???
+	 * 
+	 * @param e
+	 */
 	public void addEntry(Entry e) {
-		if (!e.getNotiz().isEmpty()) {
-			// throw away empty entrys
-			if (eintraege.size() == 0) {
-				// in the case of no entrys: add entry
-				this.eintraege.add(e);
+		if (!e.getNotiz().isEmpty()) { // Empty entries are thrown away
+
+			if (entries.size() == 0) { // If there are no entries, add entry
+
+				this.entries.add(e);
 			} else {
 				if (!findEntry(e))
-					// entry was not found
-					this.eintraege.add(e);
+					// Entry was not found
+					this.entries.add(e);
 			}
 		}
 	}
+
+	/**
+	 * Gets name of one student.
+	 * 
+	 * @return name of one student.
+	 */
 
 	public String getName() {
 		return name;
 	}
 
-	public String getVorname() {
+	/**
+	 * Gets first name of one student.
+	 * 
+	 * @return vorname of one student.
+	 */
+	public String getFirstName() {
 		return vorname;
 	}
 
+	/**
+	 * Gets ID of one student.
+	 * 
+	 * @return ID of one student.
+	 */
 	public String getID() {
 		return ID;
 	}
 
+	/**
+	 * Gets entry of one student on position i.
+	 * 
+	 * @param i
+	 *            Position of one student in the array.
+	 * @return entries of one student.
+	 */
 	public Entry getEntry(int i) {
-		return eintraege.get(i);
+		return entries.get(i);
 	}
 
-	public void getEntrys() {
-		if (eintraege.isEmpty()) {
+	/**
+	 * Prints date and the entry.
+	 */
+	public void getEntries() {
+		if (entries.isEmpty()) {
 			System.out.println("Keine Eintraege vorhanden!");
 		} else {
 			System.out.println("Datum      Eintrag");
-			for (int i = 0; i < this.eintraege.size(); i++) {
+			for (int i = 0; i < this.entries.size(); i++) {
 
-				System.out.println(this.eintraege.get(i).getDatum() + " "
-						+ this.eintraege.get(i).getNotiz());
-				/**
-				 * prints the first 10 characters of the date (if the date is to
-				 * long caused by special input manner...) and than the entry
-				 * info
-				 */
-
+				System.out.println(this.entries.get(i).getDate() + " "
+						+ this.entries.get(i).getNotiz());
 			}
 		}
 
 	}
 
+	/**
+	 * Gets explicit ID of one student.
+	 * 
+	 * @return explicit ID of one student.
+	 */
 	public String geteindeutigeID() {
-		return eindeutigeID;
-	}
-
-	public boolean hasNoEntrys() {// checks if there are any entrys for this
-									// student
-		return eintraege.isEmpty();
-	}
-
-	public int getEntrySize() {
-		return eintraege.size();
-	}
-
-	public String returnEntry(int i) {
-		return eintraege.get(i).toString();
+		return explicitID;
 	}
 
 	/**
-	 * Search method for Entries for one Student
+	 * Checks if there are any entries for this student.
+	 * 
+	 * @return entries of one student.
+	 */
+	public boolean hasNoEntries() {
+		return entries.isEmpty();
+	}
+
+	/**
+	 * Gets size of entry.
+	 * 
+	 * @return size of entry.
+	 */
+	public int getEntrySize() {
+		return entries.size();
+	}
+
+	/**
+	 * Lists entry.
+	 * 
+	 * @param i
+	 *            of one student at the position i.
+	 * @return entry of one student at the position i.
+	 */
+	public String returnEntry(int i) {
+		return entries.get(i).toString();
+	}
+
+	/**
+	 * Searches for entries for one Student.
 	 * 
 	 * @param toSearch
-	 *            is the Entry to which the identical sibling should be found
-	 * @return true if toSearch was found as Entry (with identical date and
-	 *         information)
+	 *            is the Entry to which the identical sibling should be found.
+	 * @return true if toSearch was found as entry (with identical date and
+	 *         information).
 	 */
 	public boolean findEntry(Entry toSearch) {
-		for (int i = 0; i < eintraege.size(); i++) {
-			if (this.eintraege.get(i).getDatum()
-					.contentEquals(toSearch.getDatum())
-					&& this.eintraege.get(i).getNotiz()
+		for (int i = 0; i < entries.size(); i++) {
+			if (this.entries.get(i).getDate().contentEquals(toSearch.getDate())
+					&& this.entries.get(i).getNotiz()
 							.contentEquals(toSearch.getNotiz())) {
 				return true;
 			}

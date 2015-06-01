@@ -17,7 +17,7 @@ public class Class {
 	private ArrayList<Student> studentsArray = new ArrayList<>();
 
 	/**
-	 * Constructor number 1. Constructs class with classID from param.
+	 * Constructor number 1. constructs class with classID from param.
 	 * 
 	 * @param ID
 	 *            Is the ID for the class.
@@ -27,10 +27,10 @@ public class Class {
 	}
 
 	/**
-	 * Constructor number 2. Constructs class with classID and all the students
+	 * Constructor number 2. constructs class with classID and all the students.
 	 * from param c from those studentsArray.
 	 * 
-	 * @param c
+	 * @param class c
 	 *            The class to be copied.
 	 */
 	public Class(Class c) {
@@ -124,7 +124,7 @@ public class Class {
 	 */
 	public void listEntrysOfStudents() {
 		for (int i = 1; i < studentsArray.size(); i++) {
-			studentsArray.get(i).getEntrys();
+			studentsArray.get(i).getEntries();
 			System.out.println("Einträge ausgegeben");
 		}
 	}
@@ -137,7 +137,7 @@ public class Class {
 
 			System.out.println("Schüler " + studentsArray.get(i).getID() + " "
 					+ studentsArray.get(i).getName() + " "
-					+ studentsArray.get(i).getVorname());
+					+ studentsArray.get(i).getFirstName());
 
 		}
 	}
@@ -147,10 +147,10 @@ public class Class {
 	 * 
 	 * @return true or false, when there are entries or not.
 	 */
-	public boolean areThereEntrys() {
+	public boolean areThereEntries() {
 		boolean b = false;
 		for (int i = 1; i < studentsArray.size(); i++) {
-			if (!studentsArray.get(i).hasNoEntrys()) {
+			if (!studentsArray.get(i).hasNoEntries()) {
 				b = true;
 			}
 

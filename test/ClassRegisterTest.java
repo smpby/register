@@ -102,7 +102,7 @@ public class ClassRegisterTest {
 				.findStudent(testStudentID));
 		assertFalse("No entry exists",
 				c.findClass(testClassID).findStudent(testStudentID)
-						.hasNoEntrys());
+						.hasNoEntries());
 
 		// Check for fitting info and Date
 		assertTrue(c.findClass(testClassID).findStudent(testStudentID)

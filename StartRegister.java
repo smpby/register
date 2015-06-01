@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 /**
- * Class StartRegister to start the programm.
+ * Class StartRegister to start the program.
  * 
  * @author Simon Bayer 5601000
  * @author Patrice Bender 117684
@@ -88,7 +88,7 @@ public class StartRegister {
 	 */
 	public static void stageOne() throws NullPointerException,
 			FileNotFoundException {
-		k1.listClassesWithEntrys();
+		k1.listClassesWithEntries();
 		String in = input("Wählen Sie die Klasse, durch ihre ID:");
 
 		if (in.equals("R")) {
@@ -129,7 +129,7 @@ public class StartRegister {
 		try {
 			tmpStudent = tmpClass.findStudent(in);
 			System.out.println("Schüler " + tmpStudent.getID() + " ("
-					+ tmpStudent.getVorname() + " " + tmpStudent.getName()
+					+ tmpStudent.getFirstName() + " " + tmpStudent.getName()
 					+ ") der Klasse " + tmpClass.getID() + " gewählt");
 
 		} catch (NullPointerException e) {
@@ -160,7 +160,7 @@ public class StartRegister {
 				stageTwo();
 			}
 			if (in.equals("1")) {
-				tmpStudent.getEntrys();
+				tmpStudent.getEntries();
 				stageThree();
 			}
 			if (in.equals("2")) {
