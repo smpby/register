@@ -3,7 +3,7 @@ package de.dhbw.vs.fpr.register;
 import java.util.ArrayList;
 
 /**
- * @author Simon Bayer 
+ * @author Simon Bayer 5601000
  * @author Patrice Bender 
  * @author Vera Gögelein 9267625
  * @author Robert Leipelt 9469264
