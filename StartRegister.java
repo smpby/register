@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
+import sun.security.util.Length;
+
 /**
  * Class StartRegister starts and controls the programmflow.
  * 
@@ -37,7 +39,7 @@ public class StartRegister {
 	 *            [0] is the path to the used data sets
 	 */
 	public static void main(String[] args) {
-		if (args[0] == "") {
+		if (args.length == 0) {
 			System.out
 					.println("Error: No path parameter was given. Please specify the path to the datasets necassary to execute StartRegister. ");
 			System.exit(1);
