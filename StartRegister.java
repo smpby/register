@@ -47,10 +47,16 @@ public class StartRegister {
 	 * Creates an scanner object.
 	 */
 	public static String input(String text) {
+		String line;
+
 		System.out.println(text);
 		Scanner s = new Scanner(System.in);
+		line = s.nextLine();
 
-		return s.nextLine();
+		s.close();
+
+		return line;
+
 	}
 
 	/**
@@ -58,7 +64,7 @@ public class StartRegister {
 	 * can quit the program by pressing Q.
 	 * 
 	 * @throws FileNotFoundException
-	 *             When there is no belonging text file.
+	 *             When writeEntries failed.
 	 */
 	public static void stageZero() throws FileNotFoundException {
 		boolean notauthenticated = true;
@@ -80,14 +86,10 @@ public class StartRegister {
 	 * User can choose the class, by giving the ID of the class. User can go one
 	 * step backwards, by pressing R.
 	 * 
-	 * @throws NullPointerException
-	 *             if the ID is 0.
-	 * 
 	 * @throws FileNotFoundException
-	 *             When there is no belonging text file.
+	 *             When stageZero failed.
 	 */
-	public static void stageOne() throws NullPointerException,
-			FileNotFoundException {
+	public static void stageOne() throws FileNotFoundException {
 		k1.listClassesWithEntries();
 		String in = input("Wählen Sie die Klasse, durch ihre ID:");
 
@@ -113,13 +115,10 @@ public class StartRegister {
 	 * User can choose one student, by giving the ID of them. User can go one
 	 * step backwards, by pressing R.
 	 * 
-	 * @throws NullPointerException
-	 *             if the ID is 0.
 	 * @throws FileNotFoundException
-	 *             When there is no belonging text file.
+	 *             When stageZero failed.
 	 */
-	public static void stageTwo() throws NullPointerException,
-			FileNotFoundException {
+	public static void stageTwo() throws FileNotFoundException {
 		tmpClass.listStudents();
 		String in = input("Wählen Sie einen Schüler, durch seine ID:");
 		if (in.equals("R")) {
@@ -146,13 +145,10 @@ public class StartRegister {
 	 * "Neuen Eintrag erstellen" by pressing 2 and
 	 * "Zur Schülerwahl zurückkehren" by pressing R.
 	 * 
-	 * @throws NullPointerException
-	 *             if the input is 0.
 	 * @throws FileNotFoundException
-	 *             When there is no belonging text file.
+	 *             When stageZero failed.
 	 */
-	public static void stageThree() throws NullPointerException,
-			FileNotFoundException {
+	public static void stageThree() throws FileNotFoundException {
 		String in = input("Einträge anzeigen = 1 || Neuen Eintrag erstellen = 2 || Zur Schülerwahl zurückkehren = R");
 
 		if (in.equals("1") || in.equals("2") || in.equals("R")) {
@@ -183,7 +179,7 @@ public class StartRegister {
 		String info = input("Was hat der Schüler verbrochen?");
 		String date = input("Fügen Sie bitte noch das Datum hinzu (Im Format: DD.MM.JJJJ)");
 		if (validDate(date)) {
-			tmpEntry = new Entry(info, date, tmpStudent.geteindeutigeID());
+			tmpEntry = new Entry(info, date, tmpStudent.getExplicitID());
 			tmpStudent.addEntry(tmpEntry);
 		} else {
 			stackEntryArray();

@@ -134,10 +134,4 @@ public class Teacher {
 		setUserName(userName);
 		setPassWord(passWord);
 	}
-
-	@Override
-	public String toString() {
-		return ";" + getFirstName() + ";" + getLastName() + ";" + getID() + ";"
-				+ getUserName() + ";" + getPassWord();
-	}
 }

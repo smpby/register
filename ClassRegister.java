@@ -60,8 +60,9 @@ public class ClassRegister {
 
 			k.createClass(helper[i]);
 			classesArray.add(k);
-		}
 
+		}
+		fileScanner.close();
 	}
 
 	/**
@@ -103,10 +104,12 @@ public class ClassRegister {
 			System.out.println("Dataset of Register.txt is icomplete!");
 		}
 
+		fileScanner.close();
+
 	}
 
 	/**
-	 * Finds reference from one student to an ID.
+	 * Finds student to an ID.
 	 * 
 	 * @param searchID
 	 *            ID of one student.
@@ -171,15 +174,6 @@ public class ClassRegister {
 		return k;
 	}
 
-	// kann diese Methode raus??
-	/**
-	 * public void listClasses() { // Listet alle Klassen auf mit allen Schülern
-	 * for (int i = 0; i < classesArray.size(); i++) { System.out.println("");
-	 * System.out.println("_______Klasse " + classesArray.get(i).getID() +
-	 * " beginnt______"); System.out.println("");
-	 * classesArray.get(i).listStudents(); } }
-	 */
-
 	/**
 	 * Lists all classes with entries.
 	 */
@@ -232,6 +226,8 @@ public class ClassRegister {
 
 			}
 		}
+
+		fileScanner.close();
 
 	}
 
@@ -303,6 +299,9 @@ public class ClassRegister {
 		System.out
 				.println("Bitte wählen sie eine Klasse aus oder gehen Sie zu der Authentifizierung mit R zurück:");
 		String chosenClass = sc.nextLine();
+
+		sc.close();
+
 		if (chosenClass == "R") {
 			return null; // no Class was chosen and R was pressed it returns
 							// to authentication
@@ -312,5 +311,7 @@ public class ClassRegister {
 		else
 			return chooseClass();// gives the teacher the opportunity to enter a
 									// valid class name
+
 	}
+
 }

@@ -8,10 +8,11 @@ package de.dhbw.vs.fpr.register;
  * @author Vera Gögelein 9267625
  * @author Robert Leipelt 9469264
  */
+
 public class Entry {
 
-	private String notiz;
-	private String datum;
+	private String note;
+	private String date;
 	private String IDofStudent;
 	private String completeEntry;
 
@@ -26,19 +27,21 @@ public class Entry {
 	 *            of one student.
 	 */
 	public Entry(String n, String date, String ID) {
-		notiz = n;
-		datum = date;
+		note = n;
+		this.date = date;
 		IDofStudent = ID;
 	}
 
 	/**
- * 
- */
+    * Generating of a string with the ID of student, date, note formated for later saving
+    */
+	
+	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		s.append(";" + IDofStudent + ";");
-		s.append(datum + ";");
-		s.append(notiz);
+		s.append(date + ";");
+		s.append(note);
 		return s.toString();
 	}
 
@@ -54,19 +57,19 @@ public class Entry {
 	/**
 	 * Gets text of the entry.
 	 * 
-	 * @return notiz, text of the entry.
+	 * @return note, text of the entry.
 	 */
-	public String getNotiz() {
-		return notiz;
+	public String getNote() {
+		return note;
 	}
 
 	/**
 	 * Gets date of an entry.
 	 * 
-	 * @return datum of an entry.
+	 * @return date of an entry.
 	 */
 	public String getDate() {
-		return datum;
+		return date;
 	}
 
 	/**
@@ -74,7 +77,7 @@ public class Entry {
 	 * 
 	 * @return IDofStudent.
 	 */
-	public String getIDofPupil() {
+	public String getIDofStudent() {
 		return IDofStudent;
 	}
 

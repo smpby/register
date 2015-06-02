@@ -53,12 +53,10 @@ public class Class {
 				allStudents[3].substring(0, 2), this.classID);
 		studentsArray.add(tmpStudent);
 
-		/**
-		 * Test if array is divisible by three and if there is a rest of one for
-		 * the ID
-		 */
-		// Ich hab keine Ahnung ob das hier javadoc korrekt ausführt.
-		if (allStudents.length % 3 == 1) {
+	
+		if (allStudents.length % 3 == 1) { 
+			// If Students array modulo 3 is 1 the array is the right size.
+			// It is used in portions of 3 starting at position 1!
 
 			for (int i = 1; i < allStudents.length; i = i + 3) {
 

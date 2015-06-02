@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class Student {
 
-	private String name = new String();
-	private String vorname = new String();
+	private String lastName = new String();
+	private String firstName = new String();
 
 	private ArrayList<Entry> entries = new ArrayList<Entry>();
 	private String explicitID;
@@ -34,8 +34,8 @@ public class Student {
 	 *            of one student.
 	 */
 	public Student(String firstName, String name, String ID, String klassenID) {
-		this.name = name;
-		vorname = firstName;
+		this.lastName = name;
+		this.firstName = firstName;
 		this.ID = ID;
 		StringBuilder sg = new StringBuilder();
 		sg.append(klassenID);
@@ -45,12 +45,12 @@ public class Student {
 	}
 
 	/**
-	 * Adding of one entry to ???
+	 * Adding of one entry to students entries (list).
 	 * 
-	 * @param e
+	 * @param e entry object to be added.
 	 */
 	public void addEntry(Entry e) {
-		if (!e.getNotiz().isEmpty()) { // Empty entries are thrown away
+		if (!e.getNote().isEmpty()) { // Empty entries are thrown away
 
 			if (entries.size() == 0) { // If there are no entries, add entry
 
@@ -70,16 +70,16 @@ public class Student {
 	 */
 
 	public String getName() {
-		return name;
+		return lastName;
 	}
 
 	/**
 	 * Gets first name of one student.
 	 * 
-	 * @return vorname of one student.
+	 * @return first name one student.
 	 */
 	public String getFirstName() {
-		return vorname;
+		return firstName;
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class Student {
 			for (int i = 0; i < this.entries.size(); i++) {
 
 				System.out.println(this.entries.get(i).getDate() + " "
-						+ this.entries.get(i).getNotiz());
+						+ this.entries.get(i).getNote());
 			}
 		}
 
@@ -124,7 +124,7 @@ public class Student {
 	 * 
 	 * @return explicit ID of one student.
 	 */
-	public String geteindeutigeID() {
+	public String getExplicitID() {
 		return explicitID;
 	}
 
@@ -168,8 +168,8 @@ public class Student {
 	public boolean findEntry(Entry toSearch) {
 		for (int i = 0; i < entries.size(); i++) {
 			if (this.entries.get(i).getDate().contentEquals(toSearch.getDate())
-					&& this.entries.get(i).getNotiz()
-							.contentEquals(toSearch.getNotiz())) {
+					&& this.entries.get(i).getNote()
+							.contentEquals(toSearch.getNote())) {
 				return true;
 			}
 
