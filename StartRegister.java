@@ -53,15 +53,9 @@ public class StartRegister {
 	 * @return Scanned input.
 	 */
 	public static String input(String text) {
-		String line;
-
 		System.out.println(text);
 		Scanner s = new Scanner(System.in);
-		line = s.nextLine();
-
-		s.close();
-
-		return line;
+		return s.nextLine();
 
 	}
 
@@ -200,7 +194,7 @@ public class StartRegister {
 	 *            Is the date of one entry.
 	 * @return false, if there was no date giving by the user and/or it's in the
 	 *         wrong format.
-	 * @return true, if there is a date giving in the right format.
+	 *          true, if there is a date giving in the right format.
 	 */
 	public static boolean validDate(String date) {
 		if (date == null) {

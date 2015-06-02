@@ -46,7 +46,7 @@ public class Class {
 	 */
 
 	public void createClass(String studentList) {
-		String allStudents[] = studentList.substring(3).split(";");
+		String allStudents[] = studentList.substring(3).split("||");
 
 		Student tmpStudent = new Student(allStudents[1], allStudents[2],
 				allStudents[3].substring(0, 2), this.classID);

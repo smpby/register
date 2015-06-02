@@ -39,8 +39,8 @@ public class Entry {
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder();
-		s.append(";" + IDofStudent + ";");
-		s.append(date + ";");
+		s.append("||" + IDofStudent + "||");
+		s.append(date + "||");
 		s.append(note);
 		return s.toString();
 	}
