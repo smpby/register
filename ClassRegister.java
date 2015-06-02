@@ -84,7 +84,7 @@ public class ClassRegister {
 			sb.append(fileScanner.nextLine() + "\n");
 
 		}
-		String[] entryArray = sb.toString().split("||"); // Divides register.txt
+		String[] entryArray = sb.toString().split("<§>"); // Divides register.txt
 														// in separate class
 														// parts
 
@@ -210,7 +210,7 @@ public class ClassRegister {
 			sb.append(fileScanner.nextLine() + "\n");
 
 		}
-		String stringcopy[] = sb.toString().split("||"); // Divides teacher.txt
+		String stringcopy[] = sb.toString().split("<§>"); // Divides teacher.txt
 														// in separate class
 														// parts
 

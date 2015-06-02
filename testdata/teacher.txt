@@ -1,2 +1,2 @@
-;Simone;Müller;01;simone;1234
-;Ptric;Brecht;02;tric;7890
+<§>Simone<§>Müller<§>01<§>simone<§>1234
+<§>Ptric<§>Brecht<§>02<§>tric<§>7890

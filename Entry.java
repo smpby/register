@@ -33,14 +33,16 @@ public class Entry {
 	}
 
 	/**
-    * Generating of a string with the ID of student, date, note formated for later saving
+    * Generating of a string with the ID of student, date, note formated for later saving.
+    * 
+    * @return writeable String for register.txt
     */
 	
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder();
-		s.append("||" + IDofStudent + "||");
-		s.append(date + "||");
+		s.append("<§>" + IDofStudent + "<§>");
+		s.append(date + "<§>");
 		s.append(note);
 		return s.toString();
 	}
