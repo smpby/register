@@ -1,2 +1,22 @@
-;01211;11.11.1111;stört unterricht
-;01211;29.05.2015;stört schon wieder den unterricht
+<class>
+<classID>011</classID>
+||04||14.3.15||Rülpst im Unterricht, ohne sich dafür zu entschuldigen.
+||08||13.05.15||Wirft im Klassenraum mit Papierfliegern, während des Unterrichts.
+</class>
+
+<class>
+<classID>012</classID>
+||05||12.3.15||Schminkt sich im Unterricht.
+||10||14.05.15||Hat Reisnägel, am Ende der großen Pause, auf dem Lehrerstuhl gelegt.
+</class>
+
+<class>
+<classID>013</classID>
+||15||02.3.15||Wirft mit dem nassen Schwamm auf den Lehrer.
+||18||15.05.15||Hat sein Hausaufgaben zum dritten Mal vergessen.
+</class>
+
+<class>
+<classID>014</classID>
+
+</class>
