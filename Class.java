@@ -30,8 +30,7 @@ public class Class {
 	 * Constructor number 2. constructs class with classID and all the students.
 	 * from param c from those studentsArray.
 	 * 
-	 * @param class c
-	 *            The class to be copied.
+	 * @param c The class to be copied.
 	 */
 	public Class(Class c) {
 		this.classID = c.classID;
@@ -53,8 +52,7 @@ public class Class {
 				allStudents[3].substring(0, 2), this.classID);
 		studentsArray.add(tmpStudent);
 
-	
-		if (allStudents.length % 3 == 1) { 
+		if (allStudents.length % 3 == 1) {
 			// If Students array modulo 3 is 1 the array is the right size.
 			// It is used in portions of 3 starting at position 1!
 
@@ -160,6 +158,7 @@ public class Class {
 	 * Gets one student on position i.
 	 * 
 	 * @param i
+	 *            is index of student.
 	 * @return Information of one student on position i.
 	 */
 	public Student arrayInfo(int i) {

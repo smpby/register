@@ -22,7 +22,9 @@ public class ClassRegister {
 
 	/**
 	 * Constructor of ClassRegister. It's ok, because there is no need to change
-	 * the path of the datasets dynamically.
+	 * the path of the data sets dynamically.
+	 * 
+	 * @param path is path to data sets of student, teacher an register.
 	 */
 	public ClassRegister(String path) {
 		this.path = path;
@@ -234,7 +236,7 @@ public class ClassRegister {
 	/**
 	 * Show entry for one student, with an explicit ID.
 	 * 
-	 * @param explicitID
+	 * @param explicitID Combination of class and student ID.
 	 */
 	public void showEntryforOneStudent(String explicitID) {
 		findReference(explicitID).getEntries();

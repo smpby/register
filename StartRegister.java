@@ -24,6 +24,8 @@ public class StartRegister {
 
 	/**
 	 * The main method is where the text files are read.
+	 * 
+	 * @param args [0] is the path to the used data sets 
 	 */
 	public static void main(String[] args) {
 
@@ -44,7 +46,11 @@ public class StartRegister {
 
 	/**
 	 * Create of an scanner object as an method, because it's more practicable.
-	 * Creates an scanner object.
+	 * Creates an scanner object
+	 * 
+	 * @param text to be printed before scanning.
+	 * 
+	 * @return Scanned input.
 	 */
 	public static String input(String text) {
 		String line;

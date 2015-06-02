@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.nio.file.*;
 import java.util.Scanner;
 
 import org.junit.Before;
@@ -23,17 +22,12 @@ import de.dhbw.vs.fpr.register.Entry;
  * @author Robert Leipelt 9469264
  */
 
-/**
- * To run this test use -Dpath=<pathToTheTestData> as parameter to the [J]VM
- * 
- * @author simon
- *
- */
+
+ //To run this test use -Dpath=<pathToTheTestData> as parameter to the [J]VM
+ 
 public class ClassRegisterTest {
 
-	String path;// =
-				// "/home/simon/workspace/Prog_funk/projectclassregister/src/de/dhbw/vs/fpr/register/testdata";
-	;
+	String path;
 	ClassRegister c;
 	String testClassID;
 	String testStudentID;
