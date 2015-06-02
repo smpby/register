@@ -22,9 +22,8 @@ import de.dhbw.vs.fpr.register.Entry;
  * @author Robert Leipelt 9469264
  */
 
+// To run this test use -Dpath=<pathToTheTestData> as parameter to the [J]VM
 
- //To run this test use -Dpath=<pathToTheTestData> as parameter to the [J]VM
- 
 public class ClassRegisterTest {
 
 	String path;
@@ -35,9 +34,13 @@ public class ClassRegisterTest {
 	String testDate;
 	Entry testEntry;
 
+	/**
+	 * Preparation for the tests by preparing instance variables and reading the
+	 * data from the prepared testfiles
+	 */
 	@Before
 	public void setUp() {
-		// Set up for the test, manipulating instance variables and Read Data
+
 		testClassID = "012";
 		testStudentID = "11";
 		testInfo = "stört unterricht NICHT";
@@ -66,6 +69,10 @@ public class ClassRegisterTest {
 
 	}
 
+	/**
+	 * Tests if specific student with Name="Brecht" was put in the right class
+	 * and given the appropiate StudentID in the reading proces.
+	 */
 	@Test
 	public void testReadStudents() {
 		String testClassID = "011";
@@ -81,8 +88,13 @@ public class ClassRegisterTest {
 				.getName().contentEquals(testStudentName));
 	}
 
+	/**
+	 * Tests if a specific entry is read correctly from file (has fitting
+	 * student, note and date).
+	 * 
+	 */
 	@Test
-	public void testReadEntrys() {
+	public void testReadentries() {
 		String testClassID = "012";
 		String testStudentID = "11";
 		String testInfo = "stört unterricht";
@@ -103,6 +115,9 @@ public class ClassRegisterTest {
 				.findEntry(testEntry));
 	}
 
+	/**
+	 * Tests if an new entry is correctly put in the internal datastructures
+	 */
 	@Test
 	public void testMakeEntry() {
 
@@ -125,13 +140,18 @@ public class ClassRegisterTest {
 
 	}
 
+	/**
+	 * Tests if a newly assembled entry is saved correctly and can be read
+	 * without any changes to his data. It also deletes the entry afterwards for
+	 * rerunability.
+	 */
 	@Test
 	public void testSaveEntry() {
 
 		// Generate new entry
 		testMakeEntry();
 
-		// write entrys
+		// write entries
 		try {
 			c.writeEntries();
 		} catch (FileNotFoundException e) {
@@ -162,4 +182,15 @@ public class ClassRegisterTest {
 
 	}
 
+	/**
+	 * tests the authenticate method
+	 */
+	@Test
+	public void testAuthenticate() {
+		
+		assertFalse("False authentification went thru",
+				c.authenticate("simone", "4321"));
+		assertTrue("Correct authentification data did not work",
+				c.authenticate("simone", "1234"));
+	}
 }

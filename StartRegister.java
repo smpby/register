@@ -6,7 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 /**
- * Class StartRegister to start the program.
+ * Class StartRegister starts and controls the programmflow.
+ * 
+ * If mayor errors occure the program exits:
+ * 
+ * 1 * for missing parameters.
+ * 
+ * 2 * for missing datasets.
+ * 
+ * 3 * for corrupted datasets.
  * 
  * @author Simon Bayer 5601000
  * @author Patrice Bender 117684
@@ -25,10 +33,15 @@ public class StartRegister {
 	/**
 	 * The main method is where the text files are read.
 	 * 
-	 * @param args [0] is the path to the used data sets 
+	 * @param args
+	 *            [0] is the path to the used data sets
 	 */
 	public static void main(String[] args) {
-
+		if (args[0] == "") {
+			System.out
+					.println("Error: No path parameter was given. Please specify the path to the datasets necassary to execute StartRegister. ");
+			System.exit(1);
+		}
 		k1 = new ClassRegister(args[0]);
 		try {
 			k1.readStudents();
@@ -40,7 +53,13 @@ public class StartRegister {
 		} catch (FileNotFoundException e1) {
 
 			e1.printStackTrace();
+			System.exit(2);
+		} catch (DataCorruptionException e) {
+			e.printStackTrace();
+			System.exit(3);
 		}
+		System.exit(0);
+		// Everything went smooth.
 
 	}
 
@@ -48,7 +67,8 @@ public class StartRegister {
 	 * Create of an scanner object as an method, because it's more practicable.
 	 * Creates an scanner object
 	 * 
-	 * @param text to be printed before scanning.
+	 * @param text
+	 *            to be printed before scanning.
 	 * 
 	 * @return Scanned input.
 	 */
@@ -193,8 +213,8 @@ public class StartRegister {
 	 * @param date
 	 *            Is the date of one entry.
 	 * @return false, if there was no date giving by the user and/or it's in the
-	 *         wrong format.
-	 *          true, if there is a date giving in the right format.
+	 *         wrong format. true, if there is a date giving in the right
+	 *         format.
 	 */
 	public static boolean validDate(String date) {
 		if (date == null) {

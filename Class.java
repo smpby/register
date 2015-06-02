@@ -3,7 +3,7 @@ package de.dhbw.vs.fpr.register;
 import java.util.ArrayList;
 
 /**
- * Class for one class of students.
+ * Class for a class(entity) of students.
  * 
  * @author Simon Bayer 5601000
  * @author Patrice Bender 117684
@@ -30,7 +30,8 @@ public class Class {
 	 * Constructor number 2. constructs class with classID and all the students.
 	 * from param c from those studentsArray.
 	 * 
-	 * @param c The class to be copied.
+	 * @param c
+	 *            The class to be copied.
 	 */
 	public Class(Class c) {
 		this.classID = c.classID;
@@ -38,14 +39,15 @@ public class Class {
 	}
 
 	/**
-	 * Creates a class with Students of the studentsList. If the dataset is
-	 * incomplete, there will be an error message.
+	 * Fills class with Students of the studentsList.
 	 * 
 	 * @param studentList
 	 *            Students of the class.
+	 * @throws DataCorruptionException
+	 *             is thrown when dataset was tinkered with and the number of
+	 *             sperators does not match the standart
 	 */
-
-	public void createClass(String studentList) {
+	public void addStudents(String studentList) throws DataCorruptionException {
 		String allStudents[] = studentList.substring(3).split("<§>");
 		Student tmpStudent = new Student(allStudents[1], allStudents[2],
 				allStudents[3].substring(0, 2), this.classID);
@@ -67,7 +69,8 @@ public class Class {
 
 			}
 		} else {
-			System.out.println("Dataset is incomplete!");
+			throw new DataCorruptionException(
+					"Dataset student.txt is incomplete/corrupt!");
 		}
 
 	}

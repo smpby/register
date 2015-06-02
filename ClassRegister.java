@@ -24,7 +24,8 @@ public class ClassRegister {
 	 * Constructor of ClassRegister. It's ok, because there is no need to change
 	 * the path of the data sets dynamically.
 	 * 
-	 * @param path is path to data sets of student, teacher an register.
+	 * @param path
+	 *            is path to data sets of student, teacher an register.
 	 */
 	public ClassRegister(String path) {
 		this.path = path;
@@ -35,8 +36,12 @@ public class ClassRegister {
 	 * 
 	 * @throws FileNotFoundException
 	 *             When the text file student.txt is not found.
+	 * @throws DataCorruptionException
+	 *             Is thrown when students couldn be imported right. For further
+	 *             refernce see addStudents() in {@link Class}
 	 */
-	public void readStudents() throws FileNotFoundException {
+	public void readStudents() throws FileNotFoundException,
+			DataCorruptionException {
 
 		StringBuilder sb = new StringBuilder();
 
@@ -60,7 +65,7 @@ public class ClassRegister {
 			Class k = new Class(helper[i].substring(0, 3));
 			// Brings ID's of the classes from the text file
 
-			k.createClass(helper[i]);
+			k.addStudents(helper[i]);
 			classesArray.add(k);
 
 		}
@@ -68,12 +73,17 @@ public class ClassRegister {
 	}
 
 	/**
-	 * The text file register.txt is read in.
+	 * The text file register.txt is read in and the found classes are saved in
+	 * classesArray. Students ar
 	 * 
 	 * @throws FileNotFoundException
 	 *             When the text file register.txt is not found.
+	 * @throws DataCorruptionException
+	 *             When the content of register.txt is not complying with our
+	 *             standarts for formating
 	 */
-	public void readRegister() throws FileNotFoundException {
+	public void readRegister() throws FileNotFoundException,
+			DataCorruptionException {
 		File myRegister = new File(path + "/register.txt");
 
 		Scanner fileScanner = new Scanner(myRegister);
@@ -84,9 +94,10 @@ public class ClassRegister {
 			sb.append(fileScanner.nextLine() + "\n");
 
 		}
-		String[] entryArray = sb.toString().split("<§>"); // Divides register.txt
-														// in separate class
-														// parts
+		String[] entryArray = sb.toString().split("<§>"); // Divides
+															// register.txt
+															// in separate class
+															// parts
 
 		if (entryArray.length % 3 == 1) { // If rest = 1; then the file will be
 											// filled with x entries with 3
@@ -103,7 +114,58 @@ public class ClassRegister {
 			}
 
 		} else {
-			System.out.println("Dataset of Register.txt is icomplete!");
+			throw new DataCorruptionException(
+					"Dataset of Register.txt is incomplete/corrupt!");
+		}
+
+		fileScanner.close();
+
+	}
+
+	/**
+	 * The text file teacher.txt is read in and all teachers are saved in
+	 * teacherArray.
+	 * 
+	 * @throws FileNotFoundException
+	 *             When the text teacher.txt is not found.
+	 * @throws DataCorruptionException
+	 *             is thrown if teachers wer not readable from file because of
+	 *             seperator count mismatch
+	 */
+	public void readTeacher() throws FileNotFoundException,
+			DataCorruptionException {
+		String file = path + "/teacher.txt";
+		File myRegister = new File(file);
+		Scanner fileScanner;
+		fileScanner = new Scanner(myRegister);
+
+		StringBuilder sb = new StringBuilder();
+
+		while (fileScanner.hasNextLine()) {
+
+			sb.append(fileScanner.nextLine() + "\n");
+
+		}
+		String stringcopy[] = sb.toString().split("<§>"); // Divides teacher.txt
+															// in separate class
+															// parts
+
+		if (stringcopy.length % 5 == 1) { // If rest = 1; then the file will be
+											// filled with x entries with 3
+											// parts
+
+			for (int i = 1; i < stringcopy.length; i = i + 5) {
+				Teacher t = new Teacher(stringcopy[0 + i], stringcopy[1 + i],
+						stringcopy[2 + i], stringcopy[3 + i],
+						stringcopy[4 + i].trim());
+				// Creates new Instance of Teacher, with all the necessary
+				// Parameters from file
+				teacherArray.add(t);
+
+			}
+		} else {
+			throw new DataCorruptionException(
+					"Dataset Teacher.txt is incomplete/corrupt!");
 		}
 
 		fileScanner.close();
@@ -192,51 +254,10 @@ public class ClassRegister {
 	}
 
 	/**
-	 * The text file teacher.txt is read in.
-	 * 
-	 * @throws FileNotFoundException
-	 *             When the text teacher.txt is not found.
-	 */
-	public void readTeacher() throws FileNotFoundException {
-		String file = path + "/teacher.txt";
-		File myRegister = new File(file);
-		Scanner fileScanner;
-		fileScanner = new Scanner(myRegister);
-
-		StringBuilder sb = new StringBuilder();
-
-		while (fileScanner.hasNextLine()) {
-
-			sb.append(fileScanner.nextLine() + "\n");
-
-		}
-		String stringcopy[] = sb.toString().split("<§>"); // Divides teacher.txt
-														// in separate class
-														// parts
-
-		if (stringcopy.length % 5 == 1) { // If rest = 1; then the file will be
-											// filled with x entries with 3
-											// parts
-
-			for (int i = 1; i < stringcopy.length; i = i + 5) {
-				Teacher t = new Teacher(stringcopy[0 + i], stringcopy[1 + i],
-						stringcopy[2 + i], stringcopy[3 + i],
-						stringcopy[4 + i].trim());
-				// Creates new Instance of Teacher, with all the necessary
-				// Parameters from file
-				teacherArray.add(t);
-
-			}
-		}
-
-		fileScanner.close();
-
-	}
-
-	/**
 	 * Show entry for one student, with an explicit ID.
 	 * 
-	 * @param explicitID Combination of class and student ID.
+	 * @param explicitID
+	 *            Combination of class and student ID.
 	 */
 	public void showEntryforOneStudent(String explicitID) {
 		findReference(explicitID).getEntries();
@@ -266,13 +287,6 @@ public class ClassRegister {
 	}
 
 	/**
-	 * Prints teachers from the teacher array on the console.
-	 */
-	void printTeachers() {
-		System.out.println(teacherArray.toString());
-	}
-
-	/**
 	 * Authenticates one user with user name and password.
 	 * 
 	 * @param userName
@@ -281,7 +295,7 @@ public class ClassRegister {
 	 *            of possible user.
 	 * @return true for fitting user name password combination, else false.
 	 */
-	boolean authenticate(String userName, String passWord) {
+	public boolean authenticate(String userName, String passWord) {
 		for (int i = 0; i < teacherArray.size(); i++) {
 			if (teacherArray.get(i).getUserName().equals(userName)) {
 				return teacherArray.get(i).getPassWord().equals(passWord);
