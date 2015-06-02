@@ -5,8 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
-import sun.security.util.Length;
-
 /**
  * Class StartRegister starts and controls the programmflow.
  * 

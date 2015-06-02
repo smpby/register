@@ -1,8 +1,8 @@
 package de.dhbw.vs.fpr.register;
 
 /**
- * Class DataCorruptionException custom exception for handling formating errors
- * in source data sets
+ * Class DataCorruptionException is a custom exception for handling formating
+ * errors in source data sets
  * 
  * @author Simon Bayer 5601000
  * @author Patrice Bender 117684
