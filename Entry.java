@@ -20,11 +20,13 @@ public class Entry {
 	 * Constructs entry with text, date and ID of one student.
 	 * 
 	 * @param n
-	 *            for the text to write.
+	 *            For the text to write.
+	 * 
 	 * @param date
-	 *            of an entry.
+	 *            Of an entry.
+	 * 
 	 * @param ID
-	 *            of one student.
+	 *            Of one student.
 	 */
 	public Entry(String n, String date, String ID) {
 		note = n;
@@ -33,11 +35,12 @@ public class Entry {
 	}
 
 	/**
-    * Generating of a string with the ID of student, date, note formated for later saving.
-    * 
-    * @return writeable String for register.txt
-    */
-	
+	 * Generating of a string with the ID of student, date, note formated for
+	 * later saving.
+	 * 
+	 * @return writeable String for register.txt.
+	 */
+
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder();

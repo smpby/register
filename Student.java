@@ -25,13 +25,16 @@ public class Student {
 	 * from param.
 	 * 
 	 * @param firstName
-	 *            of one student.
+	 *            Of one student.
+	 * 
 	 * @param name
-	 *            of one student.
+	 *            Of one student.
+	 * 
 	 * @param ID
-	 *            of one student.
+	 *            Of one student.
+	 * 
 	 * @param klassenID
-	 *            of one student.
+	 *            Of one student.
 	 */
 	public Student(String firstName, String name, String ID, String klassenID) {
 		this.lastName = name;
@@ -47,7 +50,8 @@ public class Student {
 	/**
 	 * Adding of one entry to students entries (list).
 	 * 
-	 * @param e entry object to be added.
+	 * @param e
+	 *            Entry object to be added.
 	 */
 	public void addEntry(Entry e) {
 		if (!e.getNote().isEmpty()) { // Empty entries are thrown away
@@ -96,6 +100,7 @@ public class Student {
 	 * 
 	 * @param i
 	 *            Position of one student in the array.
+	 * 
 	 * @return entries of one student.
 	 */
 	public Entry getEntry(int i) {
@@ -103,7 +108,7 @@ public class Student {
 	}
 
 	/**
-	 * Prints date and the entry.
+	 * Prints date and the entry on the console.
 	 */
 	public void getEntries() {
 		if (entries.isEmpty()) {
@@ -150,7 +155,8 @@ public class Student {
 	 * Lists entry.
 	 * 
 	 * @param i
-	 *            of one student at the position i.
+	 *            Of one student at the position i.
+	 *            
 	 * @return entry of one student at the position i.
 	 */
 	public String returnEntry(int i) {
@@ -161,7 +167,8 @@ public class Student {
 	 * Searches for entries for one Student.
 	 * 
 	 * @param toSearch
-	 *            is the Entry to which the identical sibling should be found.
+	 *            Is the Entry to which the identical sibling should be found.
+	 *            
 	 * @return true if toSearch was found as entry (with identical date and
 	 *         information).
 	 */

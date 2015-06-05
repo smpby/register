@@ -25,7 +25,7 @@ public class ClassRegister {
 	 * the path of the data sets dynamically.
 	 * 
 	 * @param path
-	 *            is path to data sets of student, teacher an register.
+	 *            Is path to data sets of student, teacher an register.
 	 */
 	public ClassRegister(String path) {
 		this.path = path;
@@ -36,9 +36,10 @@ public class ClassRegister {
 	 * 
 	 * @throws FileNotFoundException
 	 *             When the text file student.txt is not found.
+	 *             
 	 * @throws DataCorruptionException
-	 *             Is thrown when students couldn be imported right. For further
-	 *             refernce see addStudents() in {@link Class}
+	 *             Is thrown when students could not be imported right. For further
+	 *             reference see addStudents() in {@link Class}.
 	 */
 	public void readStudents() throws FileNotFoundException,
 			DataCorruptionException {
@@ -74,13 +75,14 @@ public class ClassRegister {
 
 	/**
 	 * The text file register.txt is read in and the found classes are saved in
-	 * classesArray. Students ar
+	 * classesArray. 
 	 * 
 	 * @throws FileNotFoundException
 	 *             When the text file register.txt is not found.
+	 *             
 	 * @throws DataCorruptionException
 	 *             When the content of register.txt is not complying with our
-	 *             standarts for formating
+	 *             standards for formating.
 	 */
 	public void readRegister() throws FileNotFoundException,
 			DataCorruptionException {
@@ -128,9 +130,10 @@ public class ClassRegister {
 	 * 
 	 * @throws FileNotFoundException
 	 *             When the text teacher.txt is not found.
+	 *             
 	 * @throws DataCorruptionException
-	 *             is thrown if teachers wer not readable from file because of
-	 *             seperator count mismatch
+	 *             Is thrown if teachers are not readable from file because of
+	 *             separator count mismatch.
 	 */
 	public void readTeacher() throws FileNotFoundException,
 			DataCorruptionException {
@@ -177,6 +180,7 @@ public class ClassRegister {
 	 * 
 	 * @param searchID
 	 *            ID of one student.
+	 *            
 	 * @return Student s, if this is the student with the right ID.
 	 */
 	public Student findReference(String searchID) {
@@ -216,7 +220,8 @@ public class ClassRegister {
 	 * Finds class with the ID from param.
 	 * 
 	 * @param ID
-	 *            of one class.
+	 *            Of one class.
+	 *            
 	 * @return Class with the ID.
 	 */
 	public Class findClass(String ID) {
@@ -290,9 +295,11 @@ public class ClassRegister {
 	 * Authenticates one user with user name and password.
 	 * 
 	 * @param userName
-	 *            of possible user.
+	 *            Of possible user.
+	 *            
 	 * @param passWord
-	 *            of possible user.
+	 *            Of possible user.
+	 *            
 	 * @return true for fitting user name password combination, else false.
 	 */
 	public boolean authenticate(String userName, String passWord) {

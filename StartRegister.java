@@ -6,15 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 /**
- * Class StartRegister starts and controls the programmflow.
+ * Class StartRegister starts and controls the programflow.
  * 
- * If mayor errors occure the program exits:
+ * If mayor errors occur the program exits:
  * 
  * 1 * for missing parameters.
  * 
- * 2 * for missing datasets.
+ * 2 * for missing data sets.
  * 
- * 3 * for corrupted datasets.
+ * 3 * for corrupted data sets.
  * 
  * @author Simon Bayer 5601000
  * @author Patrice Bender 117684
@@ -34,7 +34,7 @@ public class StartRegister {
 	 * The main method is where the text files are read.
 	 * 
 	 * @param args
-	 *            [0] is the path to the used data sets
+	 *            [0] is the path to the used data sets.
 	 */
 	public static void main(String[] args) {
 		if (args.length == 0) {
@@ -54,7 +54,8 @@ public class StartRegister {
 
 			e1.printStackTrace();
 			System.exit(2);
-		} catch (DataCorruptionException e) {
+				} 
+			catch (DataCorruptionException e) {
 			e.printStackTrace();
 			System.exit(3);
 		}
@@ -65,10 +66,10 @@ public class StartRegister {
 
 	/**
 	 * Create of an scanner object as an method, because it's more practicable.
-	 * Creates an scanner object
+	 * Creates an scanner object.
 	 * 
 	 * @param text
-	 *            to be printed before scanning.
+	 *            To be printed before scanning.
 	 * 
 	 * @return Scanned input.
 	 */
@@ -80,8 +81,8 @@ public class StartRegister {
 	}
 
 	/**
-	 * Authentication of one user with his/her user name and the password. User
-	 * can quit the program by pressing Q.
+	 * Authentication of one user with his/her user name and the password.
+	 * User can quit the program by pressing Q.
 	 * 
 	 * @throws FileNotFoundException
 	 *             When writeEntries failed.
@@ -103,8 +104,8 @@ public class StartRegister {
 	}
 
 	/**
-	 * User can choose the class, by giving the ID of the class. User can go one
-	 * step backwards, by pressing R.
+	 * User can choose the class, by giving the ID of the class. 
+	 * User can go one step backwards, by pressing R.
 	 * 
 	 * @throws FileNotFoundException
 	 *             When stageZero failed.
@@ -132,8 +133,8 @@ public class StartRegister {
 	}
 
 	/**
-	 * User can choose one student, by giving the ID of them. User can go one
-	 * step backwards, by pressing R.
+	 * User can choose one student, by giving the ID of them. 
+	 * User can go one step backwards, by pressing R.
 	 * 
 	 * @throws FileNotFoundException
 	 *             When stageZero failed.
@@ -208,12 +209,13 @@ public class StartRegister {
 	}
 
 	/**
-	 * Checks if there is one date giving and if this is in the right format
+	 * Checks if there is one date giving and if this is in the right format.
 	 * 
 	 * @param date
 	 *            Is the date of one entry.
+	 *            
 	 * @return false, if there was no date giving by the user and/or it's in the
-	 *         wrong format. true, if there is a date giving in the right
+	 *         wrong format. True, if there is a date giving in the right
 	 *         format.
 	 */
 	public static boolean validDate(String date) {

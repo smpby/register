@@ -43,9 +43,10 @@ public class Class {
 	 * 
 	 * @param studentList
 	 *            Students of the class.
+	 * 
 	 * @throws DataCorruptionException
-	 *             is thrown when dataset was tinkered with and the number of
-	 *             sperators does not match the standart
+	 *             Is thrown when data set was tinkered with and the number of
+	 *             separators does not match the standard.
 	 */
 	public void addStudents(String studentList) throws DataCorruptionException {
 		String allStudents[] = studentList.substring(3).split("<§>");
@@ -101,7 +102,8 @@ public class Class {
 	 * 
 	 * @param ID
 	 *            ID from one student.
-	 * @return Student s if the student was found, else returns null.
+	 * 
+	 * @return Student s If the student was found, else returns null.
 	 */
 
 	public Student findStudent(String ID) {
@@ -160,7 +162,8 @@ public class Class {
 	 * Gets one student on position i.
 	 * 
 	 * @param i
-	 *            is index of student.
+	 *            Is index of student.
+	 * 
 	 * @return Information of one student on position i.
 	 */
 	public Student arrayInfo(int i) {

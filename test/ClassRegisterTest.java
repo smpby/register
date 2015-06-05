@@ -36,7 +36,7 @@ public class ClassRegisterTest {
 
 	/**
 	 * Preparation for the tests by preparing instance variables and reading the
-	 * data from the prepared testfiles
+	 * data from the prepared test files.
 	 */
 	@Before
 	public void setUp() {
@@ -52,8 +52,8 @@ public class ClassRegisterTest {
 	}
 
 	/**
-	 * this test method is not only testing if the dataset reading works, it
-	 * also is used to initialize the datastructures for the other tests
+	 * This test method is not only used for testing if the reading of data sets works, it
+	 * also is used to initialize the data structures for the other tests.
 	 */
 	@Test
 	public void testReadData() {
@@ -71,7 +71,7 @@ public class ClassRegisterTest {
 
 	/**
 	 * Tests if specific student with Name="Brecht" was put in the right class
-	 * and given the appropiate StudentID in the reading proces.
+	 * and given the appropriate StudentID in the reading process.
 	 */
 	@Test
 	public void testReadStudents() {
@@ -116,7 +116,7 @@ public class ClassRegisterTest {
 	}
 
 	/**
-	 * Tests if an new entry is correctly put in the internal datastructures
+	 * Tests if an new entry is correctly put in the internal data  structures.
 	 */
 	@Test
 	public void testMakeEntry() {
@@ -143,7 +143,7 @@ public class ClassRegisterTest {
 	/**
 	 * Tests if a newly assembled entry is saved correctly and can be read
 	 * without any changes to his data. It also deletes the entry afterwards for
-	 * rerunability.
+	 * a new runability.
 	 */
 	@Test
 	public void testSaveEntry() {
@@ -183,11 +183,11 @@ public class ClassRegisterTest {
 	}
 
 	/**
-	 * tests the authenticate method
+	 * Tests the authenticate method.
 	 */
 	@Test
 	public void testAuthenticate() {
-		
+
 		assertFalse("False authentification went thru",
 				c.authenticate("simone", "4321"));
 		assertTrue("Correct authentification data did not work",

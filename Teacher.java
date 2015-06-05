@@ -65,7 +65,7 @@ public class Teacher {
 	 * Sets ID of one teacher.
 	 * 
 	 * @param iD
-	 *            of one teacher.
+	 *            Of one teacher.
 	 */
 	private void setID(String iD) {
 		ID = iD;
@@ -75,7 +75,7 @@ public class Teacher {
 	 * Sets the first name of one teacher.
 	 * 
 	 * @param firstName
-	 *            of one teacher.
+	 *            Of one teacher.
 	 */
 	private void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -85,7 +85,7 @@ public class Teacher {
 	 * Sets the last name of one teacher.
 	 * 
 	 * @param lastName
-	 *            of one teacher.
+	 *            Of one teacher.
 	 */
 	private void setLastName(String lastName) {
 		this.lastName = lastName;
@@ -95,7 +95,7 @@ public class Teacher {
 	 * Sets user name of one teacher.
 	 * 
 	 * @param userName
-	 *            of one teacher.
+	 *            Of one teacher.
 	 */
 	private void setUserName(String userName) {
 		this.userName = userName;
@@ -105,7 +105,7 @@ public class Teacher {
 	 * Sets password of one teacher.
 	 * 
 	 * @param passWord
-	 *            of one teacher.
+	 *            Of one teacher.
 	 */
 	private void setPassWord(String passWord) {
 		this.passWord = passWord;
@@ -116,15 +116,19 @@ public class Teacher {
 	 * password form param.
 	 * 
 	 * @param firstName
-	 *            of one teacher.
+	 *            Of one teacher.
+	 *            
 	 * @param lastName
-	 *            of one teacher.
+	 *            Of one teacher.
+	 *            
 	 * @param Id
-	 *            of one teacher.
+	 *            Of one teacher.
+	 *            
 	 * @param userName
-	 *            of one teacher.
+	 *            Of one teacher.
+	 *            
 	 * @param passWord
-	 *            of one teacher.
+	 *            Of one teacher.
 	 */
 	Teacher(String firstName, String lastName, String Id, String userName,
 			String passWord) {
