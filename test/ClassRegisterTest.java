@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.dhbw.vs.fpr.register.ClassRegister;
+import de.dhbw.vs.fpr.register.DataCorruptionException;
 import de.dhbw.vs.fpr.register.Entry;
 
 /**
@@ -65,6 +66,8 @@ public class ClassRegisterTest {
 			c.readTeacher();
 		} catch (FileNotFoundException e) {
 			fail("datasets not found");
+		}catch (DataCorruptionException e) {
+			fail("input datasets contained defective data");
 		}
 
 	}
