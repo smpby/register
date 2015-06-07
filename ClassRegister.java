@@ -17,8 +17,8 @@ import java.util.Scanner;
 public class ClassRegister {
 
 	private String path;
-	ArrayList<Class> classesArray = new ArrayList<Class>();
-	ArrayList<Teacher> teacherArray = new ArrayList<Teacher>();
+	private ArrayList<Class> classesArray = new ArrayList<Class>();
+	private ArrayList<Teacher> teacherArray = new ArrayList<Teacher>();
 
 	/**
 	 * Constructor of ClassRegister. It's ok, because there is no need to change

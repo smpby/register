@@ -24,11 +24,11 @@ import java.util.Scanner;
 
 public class StartRegister {
 
-	static ClassRegister k1;
-	static Scanner s1 = new Scanner(System.in);
-	static Class tmpClass;
-	static Student tmpStudent;
-	static Entry tmpEntry;
+	private static ClassRegister k1;
+	private static Scanner s1 = new Scanner(System.in);
+	private static Class tmpClass;
+	private static Student tmpStudent;
+	private static Entry tmpEntry;
 
 	/**
 	 * The main method is where the text files are read.
@@ -54,11 +54,11 @@ public class StartRegister {
 
 			e1.printStackTrace();
 			System.exit(2);
-				} 
-			catch (DataCorruptionException e) {
+		} catch (DataCorruptionException e) {
 			e.printStackTrace();
 			System.exit(3);
 		}
+		s1.close();
 		System.exit(0);
 		// Everything went smooth.
 
@@ -75,14 +75,14 @@ public class StartRegister {
 	 */
 	public static String input(String text) {
 		System.out.println(text);
-		Scanner s = new Scanner(System.in);
-		return s.nextLine();
+		// s1= new Scanner(System.in);
+		return s1.nextLine();
 
 	}
 
 	/**
-	 * Authentication of one user with his/her user name and the password.
-	 * User can quit the program by pressing Q.
+	 * Authentication of one user with his/her user name and the password. User
+	 * can quit the program by pressing Q.
 	 * 
 	 * @throws FileNotFoundException
 	 *             When writeEntries failed.
@@ -99,13 +99,13 @@ public class StartRegister {
 			String passWord = input("Bitte geben Sie jetzt Ihr Password ein (Eingabefeld nicht verdeckt):");
 			notauthenticated = !k1.authenticate(userName, passWord);
 		}// Do as long as authentication failed
-
+		System.out.println("Sie haben sich erfolgreich authentifiziert.");
 		stageOne();
 	}
 
 	/**
-	 * User can choose the class, by giving the ID of the class. 
-	 * User can go one step backwards, by pressing R.
+	 * User can choose the class, by giving the ID of the class. User can go one
+	 * step backwards, by pressing R.
 	 * 
 	 * @throws FileNotFoundException
 	 *             When stageZero failed.
@@ -133,8 +133,8 @@ public class StartRegister {
 	}
 
 	/**
-	 * User can choose one student, by giving the ID of them. 
-	 * User can go one step backwards, by pressing R.
+	 * User can choose one student, by giving the ID of them. User can go one
+	 * step backwards, by pressing R.
 	 * 
 	 * @throws FileNotFoundException
 	 *             When stageZero failed.
@@ -213,7 +213,7 @@ public class StartRegister {
 	 * 
 	 * @param date
 	 *            Is the date of one entry.
-	 *            
+	 * 
 	 * @return false, if there was no date giving by the user and/or it's in the
 	 *         wrong format. True, if there is a date giving in the right
 	 *         format.
