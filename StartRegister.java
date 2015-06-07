@@ -25,7 +25,7 @@ import java.util.Scanner;
 public class StartRegister {
 
 	private static ClassRegister k1;
-	private static Scanner s1 = new Scanner(System.in);
+	private static Scanner s1 = new Scanner(System.in,"UTF-8");
 	private static Class tmpClass;
 	private static Student tmpStudent;
 	private static Entry tmpEntry;
@@ -77,9 +77,7 @@ public class StartRegister {
 	 */
 	public static String input(String text) {
 		System.out.println(text);
-		// s1= new Scanner(System.in);
 		return s1.nextLine();
-
 	}
 
 	/**

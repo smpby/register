@@ -48,7 +48,7 @@ public class ClassRegister {
 
 		File myfile = new File(path + "/student.txt");
 
-		Scanner fileScanner = new Scanner(myfile);
+		Scanner fileScanner = new Scanner(myfile,"UTF-8");
 
 		String s = new String();
 
@@ -88,7 +88,7 @@ public class ClassRegister {
 			DataCorruptionException {
 		File myRegister = new File(path + "/register.txt");
 
-		Scanner fileScanner = new Scanner(myRegister);
+		Scanner fileScanner = new Scanner(myRegister,"UTF-8");
 		StringBuilder sb = new StringBuilder();
 
 		while (fileScanner.hasNextLine()) {
@@ -139,8 +139,7 @@ public class ClassRegister {
 			DataCorruptionException {
 		String file = path + "/teacher.txt";
 		File myRegister = new File(file);
-		Scanner fileScanner;
-		fileScanner = new Scanner(myRegister);
+		Scanner fileScanner=new Scanner(myRegister,"UTF-8");
 
 		StringBuilder sb = new StringBuilder();
 
@@ -200,16 +199,16 @@ public class ClassRegister {
 
 			if (k.findStudent(compareStudentID) != null) {
 				s = k.findStudent(compareStudentID); // Assigns temporary
-														// attribute to a studen
+														// attribute to a student
 
 			} else {
-				System.out.println("Leider ist Schueler mit ID "
-						+ compareStudentID + " nicht vorhanden");
+				System.out.println("Student with ID  "
+						+ compareStudentID + " does not exist");
 			}
 
 		} else {
-			System.out.println("Leider ist keine Klasse mit der ID "
-					+ compareClassID + " vorhanden!!");
+			System.out.println("Class with ID "
+					+ compareClassID + " does not exist");
 		}
 
 		return s;
@@ -318,7 +317,7 @@ public class ClassRegister {
 	 *         class that was chosen.
 	 */
 	Class chooseClass() {
-		Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in,"UTF-8");
 		System.out
 				.println("Bitte wählen sie eine Klasse aus oder gehen Sie zu der Authentifizierung mit R zurück:");
 		String chosenClass = sc.nextLine();
