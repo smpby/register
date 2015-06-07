@@ -51,10 +51,12 @@ public class StartRegister {
 			stageZero();
 
 		} catch (FileNotFoundException e1) {
-
+			System.out.println("Error: One of the datasets is missing. Exiting program. Dump:");
 			e1.printStackTrace();
 			System.exit(2);
 		} catch (DataCorruptionException e) {
+			System.out
+					.println("Error: One of the datasets has incorrect content. Exiting program. Dump:");
 			e.printStackTrace();
 			System.exit(3);
 		}
@@ -98,6 +100,9 @@ public class StartRegister {
 
 			String passWord = input("Bitte geben Sie jetzt Ihr Password ein (Eingabefeld nicht verdeckt):");
 			notauthenticated = !k1.authenticate(userName, passWord);
+			if(notauthenticated){
+				System.out.println("Your password username combination is incorrect! Please try again:");
+			}
 		}// Do as long as authentication failed
 		System.out.println("Sie haben sich erfolgreich authentifiziert.");
 		stageOne();
@@ -125,7 +130,7 @@ public class StartRegister {
 
 		} catch (NullPointerException e) {
 			System.out
-					.println("Diese Klasse ist leider nicht Vorhanden! Versuchen Sie es erneut mit valider Klassennummer!");
+					.println("This class does not exist. Please try again with valid classID.");
 			stageOne();
 		}
 
@@ -154,7 +159,7 @@ public class StartRegister {
 
 		} catch (NullPointerException e) {
 			System.out
-					.println("Dieser Schüler ist leider nicht Vorhanden! Bitte versuchen Sie es erneut mit valider Schülernummer!");
+					.println("This student does not exist. Please try again with valid studentID.");
 			stageTwo();
 		}
 
@@ -203,6 +208,7 @@ public class StartRegister {
 			tmpEntry = new Entry(info, date, tmpStudent.getExplicitID());
 			tmpStudent.addEntry(tmpEntry);
 		} else {
+			System.out.println("The entered date was invalid. Please try again with correct data:");
 			stackEntryArray();
 		}
 
